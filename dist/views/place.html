@@ -1,0 +1,24 @@
+<md-content layout="column" layout-padding >
+    <h2 flex-="20">Lugares</h2>
+    <md-whiteframe class="md-whiteframe-1dp" flex="80" layout="row" layout-padding>
+<md-list class="md-dense" flex="grow">
+<md-input-container md-theme="input" class="md-input-theme">
+            <label>Filtro</label>
+            <input ng-model="search" class="md-input" tabindex="0" aria-invalid="false">
+        </md-input-container>
+        <md-subheader class="md-no-sticky">{{places.length}} lugares encontrados</md-subheader>
+        <md-list-item class="md-3-line" layout="row" ng-repeat-start="item in places| filter: search">         
+            <div class="md-list-item-text" layout="column" flex="grow">
+            <h3><strong>{{item.name}}</strong></h3>
+            <small>{{item.formattedAddress}}</small>
+            <p>Rating:{{item.rating}} {{ item.formattedPhoneNumber }}</p>
+            
+
+          </div>
+        </md-list-item>
+        <md-divider ng-repeat-end></md-divider>
+        
+    </md-list>  </md-whiteframe>
+
+    
+</md-content>

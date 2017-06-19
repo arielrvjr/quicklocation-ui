@@ -1,0 +1,33 @@
+	
+<md-content layout="row" layout-padding layout-align="center center">
+  <md-card >
+    <md-card-header layout="row" layout-align="center center">
+      <md-card-header-text flex="grow">
+        <span class="md-title text-center">Iniciar Sesión</span>
+      </md-card-header-text>
+    </md-card-header>
+    <md-card-content layout="column" layout-align="center center">
+      <md-content layout="row">
+        <button class="fa fa-facebook" ng-click="loginFacebook()"> Facebook</button>
+        <button class="fa fa-google" ng-click="loginGoogle()"> Google</button>
+      </md-content>  
+     
+        <md-input-container >
+        <label>Usuario</label>
+        <input ng-model="user.title" required>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Contraseña</label>
+        <input ng-model="user.email" type="email" required >
+      </md-input-container>
+
+
+          </md-card-content>
+    <md-card-actions layout="column" layout-align="end center">
+      <md-button class="md-raised md-primary" ng-click="login()">Iniciar Sesión</md-button>
+
+    </md-card-actions>
+  </md-card>
+</md-content>
+

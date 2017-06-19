@@ -1,0 +1,40 @@
+{
+  "name": "blank",
+  "private": true,
+  "version": "0.0.5",
+  "repository": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "browserify": "^14.4.0",
+    "connect-livereload": "^0.6.0",
+    "express": "^4.15.3",
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-embedlr": "^0.5.2",
+    "gulp-jshint": "^2.0.4",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-uglify": "^2.0.1",
+    "gulp-util": "^3.0.8",
+    "gulp-webserver": "^0.9.1",
+    "jshint": "^2.9.4",
+    "tiny-lr": "^1.0.5"
+  },
+  "scripts": {},
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-aria": "^1.6.4",
+    "angular-material": "^1.1.4",
+    "angular-messages": "^1.6.4",
+    "angular-rating": "^3.0.3",
+    "angular-route": "^1.6.4",
+    "angular1-star-rating": "^1.2.11",
+    "angularfire": "^2.3.0"
+  }
+}
