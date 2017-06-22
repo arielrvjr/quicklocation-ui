@@ -9,6 +9,7 @@
     "browserify": "^14.4.0",
     "connect-livereload": "^0.6.0",
     "express": "^4.15.3",
+    "faker": "^4.1.0",
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
     "gulp-clean": "^0.3.2",

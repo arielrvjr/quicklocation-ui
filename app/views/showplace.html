@@ -1,0 +1,38 @@
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">In-card mixed actions</span>
+
+            <md-list>
+  <md-list-item class="md-2-line" ng-repeat="item in todos">
+    <md-checkbox ng-model="item.done"></md-checkbox>
+    <div class="md-list-item-text">
+      <h3>{{item.title}}</h3>
+      <p>{{item.description}}</p>
+    </div>
+  </md-list-item>
+</md-list>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="start center">
+          <md-card-icon-actions>
+            <md-button class="md-icon-button" aria-label="Favorite">
+              <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Share">
+              <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
+            </md-button>
+          </md-card-icon-actions>
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+        <md-card-content>
+          <p>
+            {{place}}
+          </p>
+        </md-card-content>
+      </md-card>
+      </div>
+</md-content>

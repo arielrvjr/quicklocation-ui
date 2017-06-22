@@ -1,24 +1,27 @@
 <md-content layout="column" layout-padding >
-	<h2 flex-="20">Comentarios</h2>
-	<md-whiteframe class="md-whiteframe-1dp" flex="80" layout="row"  layout-padding>
-<md-list class="md-dense" flex="grow">
+    <h2 flex-="20">Comentarios</h2>
+
+<!--     <md-whiteframe class="md-whiteframe-1dp" flex="grow" layout="row" layout-padding layout-fill>
+ --><md-list flex="grow">
 <md-input-container md-theme="input" class="md-input-theme">
             <label>Filtro</label>
             <input ng-model="search" class="md-input" tabindex="0" aria-invalid="false">
         </md-input-container>
-        <md-subheader class="md-no-sticky">{{comments.length}} comentarios encontrados</md-subheader>
-        <md-list-item class="md-3-line" ng-repeat-start="item in comments| filter: search">         
- 			<div class="md-list-item-text" layout="column">
-            <h3><strong>{{item.name}}</strong></h3>
-            <small>{{item.formattedAddress}}</small>
-            <p>Rating:{{item.rating}} {{ item.formattedPhoneNumber }}</p>
-            
-
+        <md-subheader>{{places.length}} comentarios encontrados</md-subheader>
+         <md-list-item  ng-repeat-start="(index, item) in comments | filter: search" ng-click="goToPlace(item.name, $event)">
+          <div class="md-avatar" alt="{{item.name}}" layout="row" layout-align="center center"
+            md-colors="{background: 'accent-A400'}" style="border-radius: 5px !important; padding:10px;"
+          >
+              {{item.rating | number:1}}
           </div>
+          <div class="md-list-item-text" >
+            <h3><strong>{{item.name}}</strong></h3>
+            <p>{{item.formattedAddress}}</p>
+          </div>
+          <i class="material-icons md-secondary" md-colors="{color: 'primary-700'}" ng-click="doSecondaryAction($event)" >edit</i>
         </md-list-item>
         <md-divider ng-repeat-end></md-divider>
         
-    </md-list>  </md-whiteframe>
-
-	
-</md-content>
+    </md-list>  
+<!--     </md-whiteframe>
+ -->

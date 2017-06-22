@@ -1,6 +1,6 @@
 'use strict';
 
-var MainCtrl = function($log, $rootScope,$window,$mdMedia,$mdSidenav,LoginService) {
+var MainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,LoginService) {
 	    var originatorEv;
 
  	$rootScope.toggleLeft = buildToggler('left');
@@ -11,27 +11,28 @@ var MainCtrl = function($log, $rootScope,$window,$mdMedia,$mdSidenav,LoginServic
         $mdSidenav(componentId).toggle();
       };
     }
-      var appWindow = angular.element($window);
-      console.log(appWindow);
-      appWindow[0].onresize = function(){
-        console.log('resize');
-        $rootScope.screenIsSmall = $mdMedia('xs'); 
-        console.log('screenIsSmall:'+$rootScope.screenIsSmall); 
+      $rootScope.screenIsLarge = $mdMedia('gt-md');
+      $window.onresize= function(ev){
+        $log.debug('resize',ev);
+        $rootScope.screenIsLarge = $mdMedia('gt-md'); 
+        $log.debug('screenIsLarge:'+$rootScope.screenIsLarge); 
       };
-      $rootScope.screenIsSmall = $mdMedia('xs');
-
+      
     $rootScope.openMenu = function($mdMenu, ev){
       originatorEv = ev;
       $mdMenu.open(ev);
     };
+     $rootScope.navigateTo = function(url){
+    $location.path(url);
+  };
     $rootScope.logout =function(){
       $log.debug('Cerrar Sesión');
 
       LoginService.logout();
     };
     $rootScope.settings = [
-    {icon: 'place', url:'/#!/place', name: 'Lugares'},
-    {icon: 'comment', url:'/#!/comment', name: 'Comentarios'},
+    {icon: 'place', url:'/place', name: 'Lugares'},
+    {icon: 'comment', url:'/comment', name: 'Comentarios'},
     ];
 };
 

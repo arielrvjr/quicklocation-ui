@@ -3,8 +3,8 @@
 var config = function($routeProvider,$mdThemingProvider) {
 
 	$mdThemingProvider.theme('default')
-    .primaryPalette('blue')
-    .accentPalette('orange');
+    .primaryPalette('deep-orange')
+    .accentPalette('blue');
     $mdThemingProvider.enableBrowserColor();
     $routeProvider
     .when('/', {
@@ -14,8 +14,16 @@ var config = function($routeProvider,$mdThemingProvider) {
         templateUrl : 'views/login.html',
         controller : 'LoginCtrl'
     })
+    .when('/register', {
+        templateUrl : 'views/register.html',
+        controller : 'LoginCtrl'
+    })
     .when('/place', {
         templateUrl : 'views/place.html',
+        controller : 'PlaceCtrl'
+    })
+    .when('/place/:id', {
+        templateUrl : 'views/showplace.html',
         controller : 'PlaceCtrl'
     })
     .when('/comment', {
