@@ -1,27 +1,48 @@
-<md-content layout="column" layout-padding >
-    <h2 flex-="20">Comentarios</h2>
-
-<!--     <md-whiteframe class="md-whiteframe-1dp" flex="grow" layout="row" layout-padding layout-fill>
- --><md-list flex="grow">
-<md-input-container md-theme="input" class="md-input-theme">
-            <label>Filtro</label>
-            <input ng-model="search" class="md-input" tabindex="0" aria-invalid="false">
-        </md-input-container>
-        <md-subheader>{{places.length}} comentarios encontrados</md-subheader>
-         <md-list-item  ng-repeat-start="(index, item) in comments | filter: search" ng-click="goToPlace(item.name, $event)">
-          <div class="md-avatar" alt="{{item.name}}" layout="row" layout-align="center center"
-            md-colors="{background: 'accent-A400'}" style="border-radius: 5px !important; padding:10px;"
-          >
-              {{item.rating | number:1}}
-          </div>
-          <div class="md-list-item-text" >
-            <h3><strong>{{item.name}}</strong></h3>
-            <p>{{item.formattedAddress}}</p>
-          </div>
-          <i class="material-icons md-secondary" md-colors="{color: 'primary-700'}" ng-click="doSecondaryAction($event)" >edit</i>
+<md-content layout="column" layout-fill md-colors="{color: 'primary'}">
+  <md-list  md-colors="{background: 'grey-200'}" class="padding-2">
+          <md-subheader class="md-no-sticky" md-colors="{background: 'primary'}">
+            Comentarios
+          </md-subheader>
+        <!-- si es mobile -->
+          <md-list-item hide-gt-sm class="md-2-line" ng-repeat="(index, item) in comments| filter: search"  ng-click="goToPlace(index, $event)">
+           <div class="md-avatar">
+            {{item.rating | number:1}}
+           </div>
+          <div class="md-list-item-text w-100"  layout="column" md-colors="{color: 'grey-700'}" >
+            <div >
+              <h3><strong>{{item.authorName}}</strong></h3>
+            <p>{{item.comment}}</p>
+            
+            </div>
+             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="doSecondaryAction($event)">edit</md-icon>
+          </div> 
         </md-list-item>
-        <md-divider ng-repeat-end></md-divider>
-        
-    </md-list>  
-<!--     </md-whiteframe>
- -->
+        <!-- si es mas grande -->
+        <md-subheader class="md-no-sticky" hide show-gt-sm md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+            <div layout="row" md-colors="{color: 'primary-300'}">
+              <div flex="10" ><strong>Rating</strong></div>
+              <div flex="20" ><strong>Autor</strong></div>
+              <div flex="grow" ><strong>Texto</strong></div>
+            </div>
+          </md-subheader>
+      <md-list-item hide show-gt-sm ng-repeat=" item in comments| filter: search"  md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+
+          <div class="md-list-item-text w-100"  layout="column" md-colors="{color: 'grey-700'}" >
+            <div layout="row" layout-align="space-around center"   md-colors="{color: 'grey-700'}"    layout-padding  >
+              <div flex="10"><p >{{item.rating | number:1}}</p></div>
+              <div flex="20">{{item.authorName}}</div>
+              <div flex>{{item.comment}}</div>
+             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="doSecondaryAction($event)">edit</md-icon>
+            </div>
+
+          </div> 
+
+        </md-list-item>
+
+
+      </md-list>  
+
+
+
+
+    </md-content>

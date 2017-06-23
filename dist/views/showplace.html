@@ -1,38 +1,85 @@
-<md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs flex-gt-xs="50" layout="column">
-      <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">In-card mixed actions</span>
+<md-content layout-fill layout="row" layout-align="center start" md-colors="{background: 'grey-200'}">
+    <md-card md-whiteframe="2" flex-xs="100" flex-gt-xs="80" layout="column">
+      <md-card-title flex="10">
+        <md-card-title-text>
+          <span class="md-headline" md-colors="{color: 'primary'}">  <md-button class="md-icon-button" md-ripple-size="auto" href="/#!/place"><md-icon>arrow_back</md-icon></md-button>
+{{place.name}}
+          </span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content flex="grow" layout="column">
+        
+         
+          <md-list>
+            <md-list-item class="md-1-line">
+              <div class="md-list-item-text">
+                <p><md-icon>phone</md-icon> {{place.formattedPhoneNumber}}</p>
+                <p><md-icon>place</md-icon> {{place.formattedAddress}}</p>
+                <p ng-if="place.geometry.location"><md-icon>my_location</md-icon>({{place.geometry.location.lat}},{{place.geometry.location.lng}})</p>
+              </div>
+            </md-list-item>
+          </md-list>
+          <md-list>
+      <md-subheader class="md-no-sticky" ng-show="place.openingHours">
+            <p ng-show="place.openingHours.openNow">Abierto en este momento.</p>
+            <p ng-hide="place.openingHours.openNow">Cerrado en este momento.</p>
 
-            <md-list>
-  <md-list-item class="md-2-line" ng-repeat="item in todos">
-    <md-checkbox ng-model="item.done"></md-checkbox>
-    <div class="md-list-item-text">
-      <h3>{{item.title}}</h3>
-      <p>{{item.description}}</p>
-    </div>
-  </md-list-item>
-</md-list>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="start center">
-          <md-card-icon-actions>
-            <md-button class="md-icon-button" aria-label="Favorite">
-              <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="Share">
-              <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-            </md-button>
-          </md-card-icon-actions>
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
-        </md-card-actions>
-        <md-card-content>
-          <p>
-            {{place}}
-          </p>
-        </md-card-content>
-      </md-card>
-      </div>
+            <p>Horarios</p>
+      </md-subheader>
+            <md-list-item class="md-1-line" ng-repeat="item in place.openingHours.weekdayText" >
+              <div class="md-list-item-text">
+                <p>{{item}}</p>
+                
+              </div>
+            </md-list-item>
+          </md-list>
+             
+        <md-tabs md-selected="selectedIndex">
+          <md-tab md-stretch-tabs md-on-select="onTabSelected(tab)" md-on-deselect="announceDeselected(tab)" ng-disabled="tab.disabled">
+            <md-tab-label>
+              Comentarios
+            </md-tab-label>
+            <md-tab-body>
+             <md-list>
+              <md-list-item class="md-2-line" ng-repeat="item in placeReviews | filter: {done: false}">
+                <md-checkbox ng-if="currentUser()" ng-model="item.done"></md-checkbox>
+                <div class="md-list-item-text">
+                  <h3>{{item.authorName}} | {{item.rating | number:1}}</h3>
+                  <p>{{item.comment}}</p>
+
+                </div>
+                <md-icon ng-if="currentUser()" class="md-secondary" ng-click="doSecondaryAction($event)">edit</md-icon>
+                    <md-icon ng-if="currentUser()"  class="md-secondary" ng-click="doSecondaryAction($event)">delete</md-icon>
+
+              </md-list-item>
+            </md-list>
+          </md-tab-body>
+        </md-tab>
+        <md-tab md-on-select="onTabSelected(tab)" md-on-deselect="announceDeselected(tab)" ng-disabled="tab.disabled">
+          <md-tab-label>
+            Actualizaciones
+          </md-tab-label>
+          <md-tab-body>
+           <md-list>
+            <md-list-item class="md-3-line" ng-repeat="item in placeUpdates | filter: {done: false}">
+              <md-checkbox ng-model="item.done"></md-checkbox>
+              <div class="md-list-item-text">
+                <h3>{{item.field_human}}</h3>
+                <p>{{item.value}}</p>
+                <p>Notificado  por: {{item.author}}</p>
+
+              </div>
+            </md-list-item>
+              <md-icon class="md-secondary" ng-click="doSecondaryAction($event)">delete</md-icon>
+
+          </md-list>
+
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+            <md-button class="md-button md-accent" aria-label="guardar cambios">Guardar Cambios</md-button>
+
+  </md-card-content>
+</md-card>
+
 </md-content>

@@ -31,7 +31,7 @@ var LoginService = function($log,$rootScope,$firebaseAuth, $location,$mdToast){
 			$rootScope.user = firebaseUser;
 			if (!$rootScope.user["photoURL"]){
 				$log.debug('Inicial de Email: ',$rootScope.user.email[0].toUpperCase());
-				$rootScope.user.placeholder = "http://via.placeholder.com/30/ffffff/000000?text="+$rootScope.user.email[0].toUpperCase();
+				$rootScope.user.placeholder = "http://via.placeholder.com/30/448aff/ffffff?text="+$rootScope.user.email[0].toUpperCase();
 				$log.debug('Usuario con placeholder',$rootScope.user);
 			}
 		} else {
@@ -40,16 +40,10 @@ var LoginService = function($log,$rootScope,$firebaseAuth, $location,$mdToast){
 		$location.path('/');
 	});
 
-	return {
-		currentUser: function(){return auth.$getAuth()},
-		logout: function(){return auth.$signOut().then(function(){
-			$rootScope.user = null;
-		})},
-		login: function(user){
-			return
-			auth.$signInWithEmailAndPassword(user.email, user.password)
+	function loginSimple(user){
+		auth.$signInWithEmailAndPassword(user.email, user.password)
 			.then(function(firebaseUser) {
-  			$log.debug("Signed in as:", firebaseUser.uid);
+  				$log.debug("Signed in as:", firebaseUser.uid);
 			}).catch(function(error) {
   			$log.debug("Authentication failed:", error);
   			$mdToast.show(
@@ -60,6 +54,17 @@ var LoginService = function($log,$rootScope,$firebaseAuth, $location,$mdToast){
               .hideDelay(3000)
           );
 			});
+	}
+
+	return {
+		currentUser: function(){return auth.$getAuth()},
+		logout: function(){return auth.$signOut().then(function(){
+			$rootScope.user = null;
+		})},
+		login: function(user){
+			$log.debug('LoginService.login:', user);
+			return loginSimple(user);
+			
 		},
 		register:function(user){
 			auth.$createUserWithEmailAndPassword(user.email, user.password)

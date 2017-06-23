@@ -1,13 +1,13 @@
 	
 <md-content layout="row" layout-padding layout-align="center center" >
-  <md-card flex="40" flex-xs="100" >
+  <md-card flex-md="40" flex-xs="grow" >
     <md-card-header >
       <md-card-header-text flex>
-        <span class="md-title" md-colors="{color: 'primary'}">Iniciar Sesión</span>
+        <span class="md-title text-center" md-colors="{color: 'primary'}">Iniciar Sesión</span>
       </md-card-header-text>
     </md-card-header>
     <md-card-content class="background-white">
-      <div layout="column" layout-align="center center" >
+      <div layout="row" layout-align="center center" >
         <md-input-container>
           <label>Usuario</label>
           <input ng-model="user.email" type="email" required>
@@ -17,19 +17,19 @@
           <label>Contraseña</label>
           <input ng-model="user.password"  type="password" required >
         </md-input-container>
-       <div layout="row" layout-align="center center">
-          <md-button md-no-ink class="md-primary" href="/#!/register">Registrarse</md-button>
-
-          <md-button class="md-raised md-primary" md-colors="{background: 'primary'}" ng-click="login()">Iniciar Sesión</md-button>
-       </div>
+       
        
       </div>
+<div layout="row" layout-align="center center">
+          <md-button md-no-ink class="md-accent" href="/#!/register">Registrarse</md-button>
 
+          <md-button class="md-raised md-primary" md-colors="{background: 'accent'}" ng-click="login()">Iniciar Sesión</md-button>
+       </div>
 
     </md-card-content>
     <md-divider></md-divider>
     <md-card-actions layout="row" layout-align="center center" layout-wrap>
-        <button  class="md-ink-ripple fa fa-google" ng-click="loginGoogle()" > Google</button>
+        <button  class="md-ink-ripple fa fa-google" ng-click="loginGoogle()" > Iniciar sesión con Google</button>
 
     </md-card-actions>
   </md-card>

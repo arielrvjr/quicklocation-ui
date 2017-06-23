@@ -1,43 +1,45 @@
 <md-content layout="column" layout-fill md-colors="{color: 'primary'}">
-  <md-list  md-color="{background: 'white'}" class="padding-2">
-          <md-subheader class="md-no-sticky">
+  <md-list flex md-colors="{background: 'grey-200'}" class="padding-2">
+          <md-subheader class="md-no-sticky" md-colors="{background: 'primary'}">
             Lugares
           </md-subheader>
         <!-- si es mobile -->
-          <md-list-item hide-gt-sm class="md-3-line" ng-repeat="(index, item) in places| filter: search"  ng-click="goToPlace(index, $event)">
-           <div class="md-avatar">
+          <md-list-item hide-gt-sm class="md-3-line" ng-repeat="(index, item) in places | orderBy: updates:true | filter: search"  ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+           <div class="md-avatar"  >
             {{item.rating | number:1}}
            </div>
           <div class="md-list-item-text w-100" layout="column" md-colors="{color: 'grey-700'}" >
             <div >
               <h3><strong>{{item.name}}</strong></h3>
-            <p>{{item.formattedAddress}}</p>
-            <p>{{item.formattedPhoneNumber}}</p>
-
+            <p>{{item.formattedAddress}} | {{item.formattedPhoneNumber}}</p>
+            <p><md-icon>insert_comment</md-icon>{{item.reviews}}</span> <md-icon>rate_review</md-icon>{{item.updates}}</span></p>
+            
             </div>
           </div> 
         </md-list-item>
         <!-- si es mas grande -->
-        <md-subheader md-whiteframe="1" class="md-no-sticky" hide show-gt-sm>
-            <div layout="row" md-colors="{color: 'primary'}">
+        <md-subheader md-whiteframe="1" class="md-no-sticky" hide show-gt-sm md-colors="{color: 'primary-300', background: 'grey-A100'}">
+            <div layout="row" >
               <div flex="10" ><strong>Rating</strong></div>
               <div flex="20" ><strong>Nombre</strong></div>
               <div flex="30" ><strong>Dirección</strong></div>
               <div flex="20" ><strong>Número Telefónico</strong></div>
             </div>
           </md-subheader>
-        <md-list-item hide  show-gt-sm ng-repeat="(index, item) in places| filter: search" ng-click="goToPlace(index, $event)" >
+        <md-list-item hide  show-gt-sm ng-repeat="(index, item) in places | orderBy: updates:true | filter: search" ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
 
-          <div class="md-list-item-text w-100" md-whiteframe="1" layout="column" md-colors="{color: 'grey-700'}" >
-            <div layout="row"  md-whiteframe="1" md-colors="{color: 'grey-700'}" layout-padding  >
-              <div flex="10"><a >{{item.rating | number:1}}</a></div>
+          <div class="md-list-item-text w-100" layout="column" md-colors="{color: 'grey-700'}" >
+            <div layout="row" layout-align="space-around center" md-whiteframe="1" md-colors="{background: 'grey-A100'}" md-colors="{color: 'grey-700'}" layout-padding  >
+              <div flex="10"><p >{{item.rating | number:1}}</p></div>
               <div flex="20">{{item.name}}</div>
               <div flex="30">{{item.formattedAddress}}</div>
               <div flex="20">{{item.formattedPhoneNumber}}</div>
+              <div flex="10"  md-colors="{color: 'accent'}"><md-icon md-colors="{color: 'primary-300'}">insert_comment</md-icon>{{item.reviews}}</span></div>
+              <div flex="10" md-colors="{color: 'accent'}"><md-icon md-colors="{color: 'primary-300'}">rate_review</md-icon>{{item.updates}}</span></div>
+
             </div>
           </div> 
         </md-list-item>
-        <md-divier></md-divider>
       </md-list>  
 
 

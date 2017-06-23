@@ -4,7 +4,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -35,10 +34,15 @@
     opacity: 0.7 !important;
     border:0px;
 }
-
+.md-button:not([disabled]):hover {
+     background-color: rgba(255,87,34,0.2); 
+}
     .fa-facebook {
   background: #3B5998;
   color: white;
+}
+body{
+      font-size: 82%;
 }
 
 .fa-google {
@@ -75,7 +79,7 @@ md-list-item._md-button-wrap>div.md-button:first-child {
 
 
 </head>
-<body ng-controller="MainCtrl" md-colors="{background: 'grey-50'}">
+<body ng-controller="MainCtrl" md-colors="{background: 'grey-200'}">
 
 
   <div layout="column">
@@ -95,8 +99,8 @@ md-list-item._md-button-wrap>div.md-button:first-child {
 
 
       <md-menu ng-if="user" md-position-mode="target-right target" md-offset="0 50">
-      <md-button  ng-click="openMenu($mdMenu, $event)">
-        <img ng-src="{{user.photoURL|| user.placeholder}}" alt="{{user.displayName}}" class="md-user-avatar">{{user.displayName}}
+      <md-button class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+        <img ng-src="{{user.photoURL|| user.placeholder}}" alt="{{user.displayName}}" class="md-user-avatar">
       </md-button>
       <md-menu-content width="4" >
         <md-menu-item >
@@ -111,18 +115,18 @@ md-list-item._md-button-wrap>div.md-button:first-child {
 
     </div>
   </md-toolbar>
-  <div layout="row" flex="grow" layout-fill >
+  <div layout="row" flex="grow" layout-fill layout-padding>
      <md-sidenav 
-        md-colors="{background: 'grey-50'}"
+        md-colors="{background: 'grey-200'}"
         class="md-sidenav-left" md-component-id="left"
         md-is-locked-open="$mdMedia('gt-md')" >
       <md-list>
-      <md-subheader class="md-no-sticky">
+<!--       <md-subheader class="md-no-sticky">
               Enlaces
-      </md-subheader>
+      </md-subheader> -->
         <md-list-item  ng-repeat="setting in settings" ng-click="navigateTo(setting.url)">
-          <i class="material-icons" md-colors="{color: 'accent'}">{{setting.icon}}</i>
-          <p md-colors="{color: 'accent'}"> <strong>{{ setting.name }} </strong></p>
+          <md-icon md-colors="{color: 'accent'}">{{setting.icon}}</md-icon>
+          <p > <strong>{{ setting.name }} </strong></p>
         </md-list-item>
 
 

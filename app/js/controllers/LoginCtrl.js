@@ -18,7 +18,7 @@ var LoginCtrl = function($log, $scope,LoginService) {
 	  	LoginService.register($scope.user);
 	  };
 	  $scope.login = function(){
-		$log.debug('Registrar Usuario');
+		$log.debug('Iniciar sesion');
 	  	LoginService.login($scope.user);
 	  };
 

@@ -17,7 +17,9 @@ var MainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,L
         $rootScope.screenIsLarge = $mdMedia('gt-md'); 
         $log.debug('screenIsLarge:'+$rootScope.screenIsLarge); 
       };
-      
+      $rootScope.currentUser = function(){
+        return LoginService.currentUser();
+      };
     $rootScope.openMenu = function($mdMenu, ev){
       originatorEv = ev;
       $mdMenu.open(ev);
