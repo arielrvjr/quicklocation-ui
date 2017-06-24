@@ -2,7 +2,7 @@
 'use strict';
 var faker = require('faker');
 
-var PlaceCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$firebaseObject) {
+var PlaceCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$firebaseObject,$mdDialog,$mdToast) {
 	    var placesRef = firebase.database().ref('places').child('data');
 	    $scope.places = $firebaseArray(placesRef);
 
@@ -42,15 +42,12 @@ var PlaceCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
   				.then(function(x) {
     				$scope.place = x.$getRecord(id);
 			});
-  				$scope.prepareItem = function(){
-  					$scope.edititem = angular.copy(item);
-    	$scope.editplace  = angular.copy($scope.edititem.place);
-    	$scope.editid = angular.copy($scope.edititem.$id);
-    	delete $scope.edititem.place;
-    	delete $scope.edititem.$id;
-    	$scope.record = $scope.placesComment.$getRecord($scope.editplace.$id);
+  				$scope.prepareItem = function(item, place){
+  				$scope.edititem = angular.copy(item);
+    			$scope.editid = angular.copy(place.$id);
+		    	$scope.record = $scope.placeReviews.$getRecord(place.$id);
   				};
-  				$scope.deleteComment = function(item,ev){
+  				$scope.deleteComment = function(place,item,ev){
 		var confirm = $mdDialog.confirm()
           .title('¿Deseas eliminar el comentario?')
           .textContent(item.comment)
@@ -60,9 +57,9 @@ var PlaceCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 
     $mdDialog.show(confirm).then(function() {
     	//vamos a eliminar
-    	$scope.prepareItem();
+    	$scope.prepareItem(item,place);
     	delete $scope.record[$scope.editid];
-    	$scope.placesComment.$save($scope.record);
+    	$scope.placeReviews.$save($scope.record);
     	$mdToast.show(
             $mdToast.simple()
               .textContent("Comentario Eliminado")
@@ -73,7 +70,7 @@ var PlaceCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
     }, function() {
     });
 };
-  				$scope.editComment = function(item,event){
+  				$scope.editComment = function(place,item,event){
 		  var confirm = $mdDialog.prompt()
           .title('Editar Comentario')
           .placeholder('Comentario')
@@ -86,9 +83,9 @@ var PlaceCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
     $mdDialog.show(confirm).then(function(result) {
     	item.comment = result;
     	console.log('actualizar:', item);
-    	$scope.prepareItem();
+    	$scope.prepareItem(item,place);
     	$scope.record[$scope.editid]= $scope.edititem;
-    	$scope.placesComment.$save($scope.record);
+    	$scope.placeReviews.$save($scope.record);
     	$mdToast.show(
             $mdToast.simple()
               .textContent("Comentario Actualizado")

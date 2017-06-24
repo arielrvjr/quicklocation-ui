@@ -38,7 +38,7 @@ var CommentCtrl =   require('./controllers/CommentCtrl');
 app.controller('MainCtrl', ['$log','$location', '$rootScope','$window','$mdMedia','$mdSidenav','LoginService', MainCtrl]);
 app.controller('WelcomeCtrl', ['$log, $scope', WelcomeCtrl]);
 app.controller('LoginCtrl', ['$log', '$scope','LoginService', LoginCtrl]);
-app.controller('PlaceCtrl', ['$log', '$scope','$location','$routeParams','$firebaseArray','$firebaseObject', PlaceCtrl]);
+app.controller('PlaceCtrl', ['$log', '$scope','$location','$routeParams','$firebaseArray','$firebaseObject','$mdDialog','$mdToast', PlaceCtrl]);
 app.controller('CommentCtrl', ['$log', '$scope','$mdDialog','$firebaseArray','$mdToast', CommentCtrl]);
 
 

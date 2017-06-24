@@ -1,14 +1,18 @@
 	
-<md-content layout="row" layout-padding layout-align="center center" >
-  <md-card flex-md="40" flex-xs="grow" >
+<md-content layout="row" layout-padding layout-align="center center" md-colors="{background: 'grey-200'}">
+  <md-card flex="30" flex-xs="grow" >
     <md-card-header >
       <md-card-header-text flex>
         <span class="md-title text-center" md-colors="{color: 'primary'}">Iniciar Sesión</span>
       </md-card-header-text>
     </md-card-header>
-    <md-card-content class="background-white">
-      <div layout="row" layout-align="center center" >
-        <md-input-container>
+     <md-card-actions layout="row" layout-align="center center" layout-wrap>
+        <button flex="grow" class="md-ink-ripple fa fa-google" ng-click="loginGoogle()" > Iniciar con Google</button>
+
+    </md-card-actions>
+    <md-card-content flex-md="50"  layout="column" >
+<!--       <div layout="column" layout-align="center center" >
+ -->        <md-input-container>
           <label>Usuario</label>
           <input ng-model="user.email" type="email" required>
         </md-input-container>
@@ -17,21 +21,17 @@
           <label>Contraseña</label>
           <input ng-model="user.password"  type="password" required >
         </md-input-container>
-       
-       
-      </div>
-<div layout="row" layout-align="center center">
-          <md-button md-no-ink class="md-accent" href="/#!/register">Registrarse</md-button>
-
+        
+<!--       </div>
+ --><!-- <div layout="row" layout-align="center center">-->          
           <md-button class="md-raised md-primary" md-colors="{background: 'accent'}" ng-click="login()">Iniciar Sesión</md-button>
-       </div>
+ <md-button md-no-ink class="md-accent" href="/#!/register">Registrarse</md-button>
+
+      <!--  </div> -->
 
     </md-card-content>
     <md-divider></md-divider>
-    <md-card-actions layout="row" layout-align="center center" layout-wrap>
-        <button  class="md-ink-ripple fa fa-google" ng-click="loginGoogle()" > Iniciar sesión con Google</button>
-
-    </md-card-actions>
+   
   </md-card>
 </md-content>
 

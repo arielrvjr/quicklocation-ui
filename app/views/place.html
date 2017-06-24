@@ -4,7 +4,7 @@
             Lugares
           </md-subheader>
         <!-- si es mobile -->
-          <md-list-item hide-gt-sm class="md-3-line" ng-repeat="(index, item) in places | orderBy: updates:true | filter: search"  ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+          <md-list-item hide-gt-sm class="md-3-line" ng-repeat="(index, item) in places | orderBy: 'updatesCount':true | filter: search"  ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
            <div class="md-avatar"  >
             {{item.rating | number:1}}
            </div>
@@ -12,7 +12,7 @@
             <div >
               <h3><strong>{{item.name}}</strong></h3>
             <p>{{item.formattedAddress}} | {{item.formattedPhoneNumber}}</p>
-            <p><md-icon>insert_comment</md-icon>{{item.reviews}}</span> <md-icon>rate_review</md-icon>{{item.updates}}</span></p>
+            <p><md-icon>insert_comment</md-icon>{{item.reviewsCount}}</span> <md-icon>rate_review</md-icon>{{item.updatesCount}}</span></p>
             
             </div>
           </div> 
@@ -28,7 +28,7 @@
 
             </div>
           </md-subheader>
-        <md-list-item hide  show-gt-sm ng-repeat="(index, item) in places | orderBy: updates:true | filter: search" ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+        <md-list-item hide  show-gt-sm ng-repeat="(index, item) in places | orderBy: 'updatesCount':true | filter: search" ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
 
           <div class="md-list-item-text w-100" layout="column" md-colors="{color: 'grey-700'}" >
             <div layout="row" layout-align="space-around center" md-whiteframe="1" md-colors="{background: 'grey-A100'}" md-colors="{color: 'grey-700'}" layout-padding  >
@@ -36,8 +36,8 @@
               <div flex="20">{{item.name}}</div>
               <div flex="30">{{item.formattedAddress}}</div>
               <div flex="20">{{item.formattedPhoneNumber}}</div>
-              <div flex="10"  md-colors="{color: 'accent'}"><md-icon md-colors="{color: 'primary-300'}">insert_comment</md-icon>{{item.reviews}}</span></div>
-              <div flex="10" md-colors="{color: 'accent'}"><md-icon md-colors="{color: 'primary-300'}">rate_review</md-icon>{{item.updates}}</span></div>
+              <div flex="10"  md-colors="{color: 'accent'}"><md-icon md-colors="{color: 'primary-300'}">insert_comment</md-icon>{{item.reviewsCount}}</span></div>
+              <div flex="10" md-colors="{color: 'accent'}"><md-icon md-colors="{color: 'primary-300'}">rate_review</md-icon>{{item.updatesCount}}</span></div>
 
             </div>
           </div> 
