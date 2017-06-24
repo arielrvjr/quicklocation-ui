@@ -23,7 +23,9 @@
               <div flex="10" ><strong>Rating</strong></div>
               <div flex="20" ><strong>Nombre</strong></div>
               <div flex="30" ><strong>Dirección</strong></div>
-              <div flex="20" ><strong>Número Telefónico</strong></div>
+              <div flex="20" ><strong>Número Telefónico</strong></div>                            <div flex="10" ><strong>Comentarios</strong></div>
+              <div flex="10" ><strong>Modificaciones</strong></div>
+
             </div>
           </md-subheader>
         <md-list-item hide  show-gt-sm ng-repeat="(index, item) in places | orderBy: updates:true | filter: search" ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}" >

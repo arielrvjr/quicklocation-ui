@@ -7,7 +7,7 @@
           </span>
         </md-card-title-text>
       </md-card-title>
-      <md-card-content flex="grow" layout="column">
+      <md-card-content flex="70" layout="column">
         
          
           <md-list>
@@ -16,6 +16,7 @@
                 <p><md-icon>phone</md-icon> {{place.formattedPhoneNumber}}</p>
                 <p><md-icon>place</md-icon> {{place.formattedAddress}}</p>
                 <p ng-if="place.geometry.location"><md-icon>my_location</md-icon>({{place.geometry.location.lat}},{{place.geometry.location.lng}})</p>
+                <p><md-icon>web</md-icon> {{place.website}}</p>
               </div>
             </md-list-item>
           </md-list>
@@ -35,7 +36,7 @@
           </md-list>
              
         <md-tabs md-selected="selectedIndex">
-          <md-tab md-stretch-tabs md-on-select="onTabSelected(tab)" md-on-deselect="announceDeselected(tab)" ng-disabled="tab.disabled">
+          <md-tab ng-if="placeReviews"  md-stretch-tabs md-on-select="onTabSelected(tab)" md-on-deselect="announceDeselected(tab)" ng-disabled="tab.disabled">
             <md-tab-label>
               Comentarios
             </md-tab-label>
@@ -55,7 +56,7 @@
             </md-list>
           </md-tab-body>
         </md-tab>
-        <md-tab md-on-select="onTabSelected(tab)" md-on-deselect="announceDeselected(tab)" ng-disabled="tab.disabled">
+        <md-tab ng-if="currentUser()"  md-on-select="onTabSelected(tab)" md-on-deselect="announceDeselected(tab)" ng-disabled="tab.disabled">
           <md-tab-label>
             Actualizaciones
           </md-tab-label>
@@ -77,7 +78,7 @@
         </md-tab-body>
       </md-tab>
     </md-tabs>
-            <md-button class="md-button md-accent" aria-label="guardar cambios">Guardar Cambios</md-button>
+            <md-button ng-if="currentUser()"  class="md-button md-accent" aria-label="guardar cambios">Guardar Cambios</md-button>
 
   </md-card-content>
 </md-card>

@@ -33,8 +33,10 @@ var MainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,L
       LoginService.logout();
     };
     $rootScope.settings = [
+    {icon: 'dashboard', url:'/', name: 'Dashboard'},
     {icon: 'place', url:'/place', name: 'Lugares'},
     {icon: 'comment', url:'/comment', name: 'Comentarios'},
+
     ];
 };
 
