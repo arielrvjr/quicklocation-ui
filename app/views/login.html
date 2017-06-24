@@ -1,6 +1,6 @@
 	
 <md-content layout="row" layout-padding layout-align="center center" md-colors="{background: 'grey-200'}">
-  <md-card flex="30" flex-xs="grow" >
+  <md-card flex="30" flex-sm="100" flex-xs="100" >
     <md-card-header >
       <md-card-header-text flex>
         <span class="md-title text-center" md-colors="{color: 'primary'}">Iniciar Sesión</span>
@@ -8,10 +8,11 @@
     </md-card-header>
      <md-card-actions layout="row" layout-align="center center" layout-wrap>
         <button flex="grow" class="md-ink-ripple fa fa-google" ng-click="loginGoogle()" > Iniciar con Google</button>
-    <md-divider></md-divider>
 
     </md-card-actions>
     <md-card-content flex-md="50"  layout="column" >
+        <md-divider></md-divider>
+
 <!--       <div layout="column" layout-align="center center" >
  -->        <md-input-container>
           <label>Usuario</label>
