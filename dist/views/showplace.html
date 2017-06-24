@@ -49,8 +49,8 @@
                   <p>{{item.comment}}</p>
 
                 </div>
-                <md-icon ng-if="currentUser()" class="md-secondary" ng-click="doSecondaryAction($event)">edit</md-icon>
-                    <md-icon ng-if="currentUser()"  class="md-secondary" ng-click="doSecondaryAction($event)">delete</md-icon>
+                <md-icon ng-if="currentUser()" class="md-secondary" ng-click="editComment(item,$event)">edit</md-icon>
+                    <md-icon ng-if="currentUser()"  class="md-secondary" ng-click="deleteComment(item,$event)">delete</md-icon>
 
               </md-list-item>
             </md-list>

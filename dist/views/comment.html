@@ -13,7 +13,8 @@
               <h3><strong>{{item.place.name}}</strong></h3>
               <p>{{item.authorName}}</p>
             <p>{{item.comment}}</p>
-            
+             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="editComment(item,$event)">edit</md-icon>
+             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="deleteComment(item,$event)">delete</md-icon>
             </div>
              <md-icon ng-if="currentUser()" class="md-secondary" ng-click="doSecondaryAction($event)">edit</md-icon>
           </div> 
@@ -35,8 +36,8 @@
               <div flex="20">{{item.place.name}}</div>
               <div flex="20">{{item.authorName}}</div>
               <div flex>{{item.comment}}</div>
-              <md-icon ng-if="currentUser()" class="md-secondary" ng-click="edit()">edit</md-icon>
-             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="delete()">delete</md-icon>
+              <md-icon ng-if="currentUser()" class="md-secondary" ng-click="editComment(item,$event)">edit</md-icon>
+             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="deleteComment(item,$event)">delete</md-icon>
             </div>
 
           </div> 

@@ -39,7 +39,7 @@ app.controller('MainCtrl', ['$log','$location', '$rootScope','$window','$mdMedia
 app.controller('WelcomeCtrl', ['$log, $scope', WelcomeCtrl]);
 app.controller('LoginCtrl', ['$log', '$scope','LoginService', LoginCtrl]);
 app.controller('PlaceCtrl', ['$log', '$scope','$location','$routeParams','$firebaseArray','$firebaseObject', PlaceCtrl]);
-app.controller('CommentCtrl', ['$log', '$scope','$firebaseArray', CommentCtrl]);
+app.controller('CommentCtrl', ['$log', '$scope','$mdDialog','$firebaseArray','$mdToast', CommentCtrl]);
 
 
 app.run(['$rootScope', '$location','$mdToast','LoginService', RunService]);
