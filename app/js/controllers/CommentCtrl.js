@@ -11,8 +11,8 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 	$scope.loadcomment = function(){
 		$scope.comments = [];
 		$scope.placesComment.$loaded().then(function(){
-		console.log($scope.placesComment);
-		angular.forEach($scope.placesComment,function(place){
+/*		console.log($scope.placesComment);
+*/		angular.forEach($scope.placesComment,function(place){
 		angular.forEach(place,function(comment,id){ 
 			if (typeof comment === 'object' && comment != null){
 				$scope.places.$loaded().then(function(x) {

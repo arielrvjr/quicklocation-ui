@@ -33,13 +33,13 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 	};
 	if(/\/place\/\w+/.test($location.path())){
 		var id = $routeParams.id;
-		var issues = firebase.database().ref('places').child('report-issue').child(id);
-		$scope.placeUpdates = $firebaseArray(issues);
-		console.log('placeUpdates:',$scope.placeUpdates);
+		
 		$scope.places.$loaded()
 		.then(function(x) {
 			$scope.place = x.$getRecord(id);
 			$scope.loadPlaceComment(id);
+			$scope.loadUpdates(id);
+
 		});
 
 		$scope.guardarCambios = function(){
@@ -55,40 +55,45 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 					$scope.placeUpdates.$save(item);
 				}
 			});
-			console.log('place:', $scope.place);
 			$scope.places.$save($scope.place);
 		};
 		$scope.deleteUpdate = function(item,ev){
 			var confirm = $mdDialog.confirm()
-			.title('¿Deseas eliminar el comentario?')
-			.textContent(item.comment)
+			.title('¿Deseas eliminar la actualización?')
+			.textContent(item.field_human + ':' + item.value)
 			.targetEvent(ev)
 			.ok('Eliminar')
 			.cancel('Cancelar');
 
 			$mdDialog.show(confirm).then(function() {
     	//vamos a eliminar
-    	//$scope.prepareItem(item,$scope.place);
-    	$scope.placeReviews.$remove(item);
+    	$scope.placeUpdates.$remove(item);
     	$mdToast.show(
     		$mdToast.simple()
-    		.textContent("Comentario Eliminado")
+    		.textContent("Actualización Eliminada")
     		.toastClass('md-warn')
     		.position('bottom right')
     		.hideDelay(3000)
     		);
-    	$scope.loadPlaceComment($scope.place.$id);
+    	$scope.loadUpdates($scope.place.$id);
 
     }, function() {
+    	$mdToast.show($mdToast.simple()
+    		.textContent("Error al intentar eliminar")
+    		.toastClass('md-warn')
+    		.position('bottom right')
+    		.hideDelay(3000));
     });              	
 
 		};
 		$scope.loadPlaceComment =function(id){
 			var reviews = firebase.database().ref('places').child('reviews').child(id);
 			$scope.placeReviews = $firebaseArray(reviews);
-			console.log('placeReviews:',$scope.placeReviews );
 		};
-
+		$scope.loadUpdates =function(id){
+			var issues = firebase.database().ref('places').child('report-issue').child(id);
+			$scope.placeUpdates = $firebaseArray(issues);
+		};
 
 		$scope.prepareItem = function(item, place){
 			$scope.edititem = angular.copy(item);
@@ -131,8 +136,8 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 
 			$mdDialog.show(confirm).then(function(result) {
 				item.comment = result;
-				console.log('actualizar:', item);
-				$scope.placeReviews.$save(item);
+/*				console.log('actualizar:', item);
+*/				$scope.placeReviews.$save(item);
 				$mdToast.show(
 					$mdToast.simple()
 					.textContent("Comentario Actualizado")

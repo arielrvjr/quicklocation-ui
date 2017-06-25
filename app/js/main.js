@@ -14,7 +14,7 @@ global.firebase.initializeApp(configFirebase());
 
 
 
-var app = angular.module('myApp', [ngMaterial, ngRoutes,angularfire]);
+var app = angular.module('quicklocation', [ngMaterial, ngRoutes,angularfire]);
 
 
 //service

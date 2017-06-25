@@ -11,9 +11,10 @@
       <md-card-content layout="column" flex="grow">
 
           <div layout="row">
-            <md-list flex="40" flex-sm="100">
+            <div flex="40" flex-sm="100" layout="column">
+              <md-list >
             <md-list-item>
-                <div class="md-list-item-text" layout="column">
+                <div class="md-list-item-text">
                   <p ng-if="place.formattedPhoneNumber"><md-icon>phone</md-icon> {{place.formattedPhoneNumber}}</p>
                   <p ng-if="place.formattedAddress"><md-icon>place</md-icon> {{place.formattedAddress}}</p>
                   <p ng-if="place.geometry.location"><md-icon>my_location</md-icon> ({{place.geometry.location.lat}},{{place.geometry.location.lng}})</p>
@@ -21,13 +22,13 @@
                 </div>
               </md-list-item>
             </md-list>
-            <md-list flex="60" flex-sm="100">
+            </div>
+            <div flex="60" flex-sm="100" layout="column">
+              <md-list >
              <md-subheader md-colors="{ background: 'grey-A100'}" class="md-no-sticky">
               <md-icon>schedule</md-icon>Horarios
               <p ng-if="place.openingHours.openNow">Abierto en estos momentos.</p>
               <p ng-if="!place.openingHours.openNow">Cerrado en estos momentos.</p>
-
-
             </md-subheader>
             <md-list-item class="md-1-line" ng-repeat="item in place.openingHours.weekdayText" layout="row" layout-wrap>
               <div class="md-list-item-text" >
@@ -35,6 +36,7 @@
               </div>
             </md-list-item>
           </md-list>
+            </div>
         </div>
         <div layout="row">
           
@@ -46,8 +48,8 @@
             <md-tab-body>
               <md-list>
 
-                <md-list-item class="md-2-line" ng-repeat="item in placeReviews" >
-                  <div class="md-list-item-text">
+                <md-list-item class="md-2-line" ng-repeat="item in placeReviews" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
+                  <div class="md-list-item-text" md-colors="{background: 'grey-A100'}">
                     <h3>{{item.authorName}} <ratingstar rating="item.rating" ></ratingstar></h3>
                     <p>{{item.comment}}</p>
 
