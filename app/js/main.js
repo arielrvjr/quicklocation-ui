@@ -17,29 +17,30 @@ global.firebase.initializeApp(configFirebase());
 var app = angular.module('myApp', [ngMaterial, ngRoutes,angularfire]);
 
 
-
-
-app.config(Config);
-
-
-
 //service
 var LoginService = require('./services/LoginService');
-var RunService = require('./services/RunService');
+//var RunService = require('./services/RunService');
 
 app.factory('LoginService', ['$log','$rootScope','$firebaseAuth','$location','$mdToast', LoginService]);
 //Controllers;
 var MainCtrl = require('./controllers/MainCtrl'); // We can use our WelcomeCtrl.js as a module. Rainbows.
-var WelcomeCtrl = require('./controllers/WelcomeCtrl'); // We can use our WelcomeCtrl.js as a module. Rainbows.
+var DashboardCtrl = require('./controllers/DashboardCtrl'); // We can use our DashboardCtrl.js as a module. Rainbows.
 var LoginCtrl =   require('./controllers/LoginCtrl');
 var PlaceCtrl =   require('./controllers/PlaceCtrl');
 var CommentCtrl =   require('./controllers/CommentCtrl');
+//reports
+var LastCommentsCtrl =   require('./controllers/LastCommentsCtrl');
+var TopUsersCtrl =   require('./controllers/TopUsersCtrl');
 
 app.controller('MainCtrl', ['$log','$location', '$rootScope','$window','$mdMedia','$mdSidenav','LoginService', MainCtrl]);
-app.controller('WelcomeCtrl', ['$log, $scope', WelcomeCtrl]);
+app.controller('DashboardCtrl', ['$log', '$scope','$firebaseArray', DashboardCtrl]);
+app.controller('LastCommentsCtrl', ['$log', '$scope','$firebaseArray', LastCommentsCtrl]);
+app.controller('TopUsersCtrl', ['$log', '$scope','$firebaseArray', TopUsersCtrl]);
+
 app.controller('LoginCtrl', ['$log', '$scope','LoginService', LoginCtrl]);
 app.controller('PlaceCtrl', ['$log', '$scope','$location','$routeParams','$firebaseArray','$firebaseObject','$mdDialog','$mdToast', PlaceCtrl]);
 app.controller('CommentCtrl', ['$log', '$scope','$mdDialog','$firebaseArray','$mdToast', CommentCtrl]);
+app.config(Config);
 
-
-app.run(['$rootScope', '$location','$mdToast','LoginService', RunService]);
+require('./components/ratingstar');
+/*app.run(['$rootScope', '$location','$mdToast','LoginService', RunService]);*/

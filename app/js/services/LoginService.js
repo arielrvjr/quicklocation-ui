@@ -1,4 +1,5 @@
-var LoginService = function($log,$rootScope,$firebaseAuth, $location,$mdToast){
+
+var loginService= function($log,$rootScope,$firebaseAuth, $location,$mdToast){
 	var auth = $firebaseAuth();
 	function loginWithProvider(provider) { 
 		auth.$signInWithPopup(provider).then(function(result) {
@@ -85,5 +86,4 @@ var LoginService = function($log,$rootScope,$firebaseAuth, $location,$mdToast){
 		loginGoogle: function(){return loginWithProvider(new firebase.auth.GoogleAuthProvider());},
 	};
 };
-
-module.exports = LoginService;
+module.exports = /*@ngInject*/  loginService;

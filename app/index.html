@@ -65,6 +65,9 @@ body{
 .padding-2 {
   padding: 8px 2rem !important;
 }
+.pl-1 {
+  padding-left: 1rem !important;
+}
 .w-100 {
   width: 100% !important;
 }
@@ -99,16 +102,16 @@ md-list-item._md-button-wrap>div.md-button:first-child {
 <img src="img/logo.png" alt="" class="md-avatar">
       <h2 flex md-truncate><a href="/">SOS Place</a></h2>
 
-      <md-button ng-if="!user" href="/#!/login">Iniciar Sesion</md-button>
+      <md-button ng-if="!user" hide-xs href="/#!/login">Iniciar Sesion</md-button>
 
 
       <md-menu ng-if="user" md-position-mode="target-right target" md-offset="0 50">
-      <md-button class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+      <md-button aria-label="Open Menu" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
         <img ng-src="{{user.photoURL|| user.placeholder}}" alt="{{user.displayName}}" class="md-user-avatar">
       </md-button>
       <md-menu-content width="4" >
         <md-menu-item >
-          <md-button flex class="md-primary" ng-click="logout()">
+          <md-button class="md-primary" ng-click="logout()">
               Cerrar Sesión
             </md-button>
         </md-menu-item>
@@ -124,13 +127,25 @@ md-list-item._md-button-wrap>div.md-button:first-child {
         md-colors="{background: 'grey-200'}"
         class="md-sidenav-left" md-component-id="left"
         md-is-locked-open="$mdMedia('gt-md')" layout-padding>
-      <md-list>
-<!--       <md-subheader class="md-no-sticky">
-              Enlaces
-      </md-subheader> -->
+      <md-list> 
+
         <md-list-item  ng-repeat="setting in settings" ng-click="navigateTo(setting.url)">
           <md-icon md-colors="{color: 'accent'}">{{setting.icon}}</md-icon>
           <p > <strong>{{ setting.name }} </strong></p>
+        </md-list-item>
+               <md-divider></md-divider>
+      <md-subheader class="md-no-sticky"  md-colors="{background: 'grey-200'}">
+              Reportes 
+      </md-subheader>
+      <md-list-item  ng-repeat="reportes in reportes" ng-click="navigateTo(reportes.url)">
+          <md-icon md-colors="{color: 'accent'}">insert_drive_file</md-icon>
+          <p > <strong>{{ reportes.name }} </strong></p>
+        </md-list-item>
+
+     <md-divider show-xs hide></md-divider>
+        <md-list-item  ng-if="!user" show-xs hide ng-click="navigateTo('/login')">
+          <md-icon md-colors="{color: 'accent'}">account_circle</md-icon>
+          <p > <strong>Iniciar Sesion </strong></p>
         </md-list-item>
 
 

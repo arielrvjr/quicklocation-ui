@@ -1,0 +1,23 @@
+<md-content layout="row" layout-xs="column" layout-sm="column" layout-fill md-colors="{color: 'primary'}" md-colors="{background: 'grey-200'}" layout-wrap>
+  <div flex="70" flex-sm="100" flex-xs="100" layout-padding>
+       <md-list flex>
+              <md-subheader class="md-no-sticky" md-colors="{background: 'primary', color:'grey-A100'}">Últimos Comentarios</md-subheader>
+        <md-list-item  ng-repeat="item in top10lastReview"  md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+            <div class="md-list-item-text" layout="column">
+            <p><strong md-colors="{color: 'accent'}">{{item.rating | number:1}}</strong> <strong md-colors="{color: 'primary'}">{{ item.name }}</strong><strong>({{ item.authorName }})</strong>:  {{ item.comment }}</p>
+           
+          </div>
+        </md-list-item>
+       </md-list>
+  </div>
+  <div flex="30" flex-sm="100" flex-xs="100" layout-padding>
+       <md-list flex>
+              <md-subheader class="md-no-sticky" md-colors="{background: 'primary', color:'grey-A100'}">Usuarios más Activos</md-subheader>
+        <md-list-item  ng-repeat="item in top10user"  md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+            <div flex="100" class="md-list-item-text">
+            <p>{{ item.authorName }}</p>
+          </div>
+        </md-list-item>
+       </md-list>
+</div>
+</md-content>

@@ -1,7 +1,7 @@
 
 'use strict';
 
-var LoginCtrl = function($log, $scope,LoginService) {
+var loginCtrl=  function($log, $scope,LoginService) {
 	  $scope.testVar = 'LoginCtrl';
 		$scope.user = {};
 	  $scope.loginFacebook = function(){
@@ -26,4 +26,4 @@ var LoginCtrl = function($log, $scope,LoginService) {
 
 };
 
-module.exports = LoginCtrl;
+module.exports = /*@ngInject*/ loginCtrl;

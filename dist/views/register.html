@@ -1,19 +1,16 @@
 	
-<md-content layout="row" layout-padding layout-align="center center">
-  <md-card flex="40" >
+<md-content layout="row" layout-padding layout-align="center center" md-colors="{background: 'grey-200'}">
+  <md-card flex="30" flex-sm="100" flex-xs="100" >
     <md-card-header >
-    <md-card-avatar>
-        <md-button class="md-icon-button" href="/#!/login">
-        <i class="material-icons" >keyboard_backspace</i>
-        </md-button>
-       </md-card-avatar>
+
       <md-card-header-text flex>
 
-        <span class="md-title" md-colors="{color: 'accent'}">Registro de Usuario</span>
+        <span class="md-title" md-colors="{color: 'primary'}"><span class="md-headline" md-colors="{color: 'primary'}"><md-button class="md-icon-button" md-ripple-size="auto" href="/#!/login">
+          <md-icon>arrow_back</md-icon>
+        </md-button>Registro de Usuario</span>
       </md-card-header-text>
     </md-card-header>
-    <md-card-content class="background-white">
-      <md-content layout="column" layout-align="center center" >
+    <md-card-content flex-md="50"  layout="column">
         <md-input-container>
           <label>Usuario</label>
           <input ng-model="user.email" type="email" required>
@@ -23,12 +20,9 @@
           <label>Contraseña</label>
           <input ng-model="user.password"  type="password" required >
         </md-input-container>
-       <div layout="row" layout-align="center center">
 
-          <md-button class="md-raised md-primary" md-colors="{background: 'primary-700'}" ng-click="register()">Registrarse</md-button>
-       </div>
+          <md-button class="md-raised md-accent" ng-click="register()">Registrarse</md-button>
        
-      </md-content>
 
     </md-card-content>
     <md-card-actions layout="row" layout-align="center center">

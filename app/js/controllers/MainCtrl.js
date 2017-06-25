@@ -1,7 +1,8 @@
 'use strict';
 
-var MainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,LoginService) {
-	    var originatorEv;
+var mainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,LoginService) {
+ 
+      var originatorEv;
 
  	$rootScope.toggleLeft = buildToggler('left');
 
@@ -20,12 +21,15 @@ var MainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,L
       $rootScope.currentUser = function(){
         return LoginService.currentUser();
       };
+        console.log('current:', $rootScope.currentUser());
+
     $rootScope.openMenu = function($mdMenu, ev){
       originatorEv = ev;
       $mdMenu.open(ev);
     };
      $rootScope.navigateTo = function(url){
     $location.path(url);
+    $mdSidenav('left').close();
   };
     $rootScope.logout =function(){
       $log.debug('Cerrar Sesión');
@@ -33,11 +37,17 @@ var MainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,L
       LoginService.logout();
     };
     $rootScope.settings = [
-    {icon: 'dashboard', url:'/', name: 'Dashboard'},
-    {icon: 'place', url:'/place', name: 'Lugares'},
+/*    {icon: 'dashboard', url:'/', name: 'Dashboard'},
+*/    {icon: 'place', url:'/place', name: 'Lugares'},
     {icon: 'comment', url:'/comment', name: 'Comentarios'},
+
+    ];
+       $rootScope.reportes = [
+    { url:'/reports/lastcomments', name: 'Últimos comentarios'},
+    { url:'/reports/topusers', name: 'Usuarios más activos'},
 
     ];
 };
 
-module.exports = MainCtrl;
+module.exports = mainCtrl;
+

@@ -2,9 +2,12 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     jshint = require('gulp-jshint'),
     browserify = require('gulp-browserify'),
+   sourcemaps = require('gulp-sourcemaps'),
     concat = require('gulp-concat'),
     clean = require('gulp-clean');
-
+ngAnnotate = require('gulp-ng-annotate'),
+    uglify = require('gulp-uglify');
+var bytediff = require('gulp-bytediff');
 // JSHint task
 gulp.task('lint', function() {
   gulp.src('./app/js/*.js')
@@ -21,8 +24,13 @@ gulp.task('browserify', function() {
     insertGlobals: true,
     debug: true
   }))
-  // Bundle to a single file
-  .pipe(concat('app.js'))
+  .pipe(concat('app.js', {newLine: ';'}))
+/*  .pipe(ngAnnotate())
+*/ /* .pipe(bytediff.start())
+        .pipe(uglify({mangle: false}))
+      .pipe(bytediff.stop())*/
+  .pipe(sourcemaps.write())
+
   // Output it to our dist folder
   .pipe(gulp.dest('dist/js'));
 });

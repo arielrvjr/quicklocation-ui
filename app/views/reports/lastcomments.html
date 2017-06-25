@@ -1,0 +1,33 @@
+<md-content layout="row" layout-xs="column" layout-sm="column" layout-fill md-colors="{color: 'primary'}" md-colors="{background: 'grey-200'}" layout-wrap>
+  <div flex="100" flex-sm="100" flex-xs="100" layout-padding>
+<!--   <md-subheader class="md-no-sticky" md-colors="{background: 'primary', color:'grey-A100'}">Últimos Comentarios</md-subheader> -->
+  <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <span>Últimos Comentarios</span>
+      </div>
+  </md-toolbar>
+  <div layout="row" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
+  	  <md-datepicker flex ng-model="desde" md-placeholder="Fecha Desde"></md-datepicker>
+      <md-datepicker flex ng-model="hasta" md-placeholder="Fecha Hasta"></md-datepicker>
+      <md-button flex="10" class="md-raised md-accent">Buscar</md-button>
+
+  </div>
+   <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+        <md-list-item  ng-repeat="item in top10lastReview" class="md-3-line" layout="row">
+        <div class="md-list-item-text" layout="row">
+         <div flex="20" layout-align="center center">
+          {{ item.date }}
+        </div>
+            <div>
+            <h3><strong md-colors="{color: 'primary'}">{{ item.name }} </strong> <ratingstar rating="item.rating" ></ratingstar></h3>
+            <h4><strong md-colors="{color: 'accent'}">{{ item.authorName }}</strong></h4>
+            <p> {{ item.comment }}</p>
+
+            </div>
+
+        </div>
+        </md-list-item>
+       </md-list>
+  </div>
+
+</md-content>

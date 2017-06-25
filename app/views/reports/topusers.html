@@ -1,0 +1,23 @@
+<md-content layout="row" layout-xs="column" layout-sm="column" layout-fill md-colors="{color: 'primary'}" md-colors="{background: 'grey-200'}" layout-wrap>
+  <div flex="100" flex-sm="100" flex-xs="100" layout-padding>
+  <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <span>Usuarios más Activos</span>
+      </div>
+  </md-toolbar>
+  <div layout="row" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
+      <md-datepicker flex ng-model="desde" md-placeholder="Fecha Desde"></md-datepicker>
+      <md-datepicker flex ng-model="hasta" md-placeholder="Fecha Hasta"></md-datepicker>
+      <md-button flex="10" class="md-raised md-primary">Buscar</md-button>
+
+  </div>
+       <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+<!--               <md-subheader class="md-no-sticky" md-colors="{background: 'primary', color:'grey-A100'}">Usuarios más Activos</md-subheader>
+ -->        <md-list-item  ng-repeat="item in topuser"  >
+            <div flex="100" class="md-list-item-text">
+            <p>{{ item.authorName }}</p>
+          </div>
+        </md-list-item>
+       </md-list>
+</div>
+</md-content>

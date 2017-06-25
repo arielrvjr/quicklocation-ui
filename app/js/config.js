@@ -1,6 +1,7 @@
 'use strict';
 
-var config = function($routeProvider,$mdThemingProvider) {
+
+module.exports =/* @ngInject */ function($routeProvider,$mdThemingProvider) {
 
 	$mdThemingProvider.theme('default')
     .primaryPalette('deep-orange')
@@ -8,7 +9,19 @@ var config = function($routeProvider,$mdThemingProvider) {
     $mdThemingProvider.enableBrowserColor();
     $routeProvider
     .when('/', {
-        templateUrl : 'views/main.html'
+        templateUrl : 'views/dashboard.html',
+        controller : 'DashboardCtrl'
+
+    })
+    .when('/reports/lastcomments', {
+        templateUrl : 'views/reports/lastcomments.html',
+        controller : 'LastCommentsCtrl'
+
+    })
+    .when('/reports/topusers', {
+        templateUrl : 'views/reports/topusers.html',
+        controller : 'TopUsersCtrl'
+
     })
     .when('/login', {
         templateUrl : 'views/login.html',
@@ -32,4 +45,3 @@ var config = function($routeProvider,$mdThemingProvider) {
     })
     ;
 };
-module.exports = config;

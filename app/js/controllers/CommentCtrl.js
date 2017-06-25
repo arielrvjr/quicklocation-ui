@@ -1,7 +1,7 @@
 
 'use strict';
 
-var CommentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
+var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 	$scope.testVar = 'CommentCtrl';
 
 	var commentsRef = firebase.database().ref("places").child("reviews");
@@ -63,7 +63,7 @@ var CommentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 };
 	$scope.editComment = function(item,event){
 		  var confirm = $mdDialog.prompt()
-          .title('Editar Comentario')
+          .title('Editar Comentario realizado por ' + item.authorName)
           .placeholder('Comentario')
           .ariaLabel('Comentario')
           .initialValue(item.comment)
@@ -90,4 +90,5 @@ var CommentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 	
 };
 
-module.exports = CommentCtrl;
+module.exports = /*@ngInject*/ commentCtrl;
+
