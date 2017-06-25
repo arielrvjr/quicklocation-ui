@@ -3,7 +3,15 @@
 
 var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 	$scope.testVar = 'CommentCtrl';
-
+  $scope.setOrderProperty = function(propertyName) {
+    if ($scope.orderProperty === propertyName) {
+        $scope.orderProperty = '-' + propertyName;
+    } else if ($scope.orderProperty === '-' + propertyName) {
+        $scope.orderProperty = propertyName;
+    } else {
+        $scope.orderProperty = propertyName;
+    }
+};
 	var commentsRef = firebase.database().ref("places").child("reviews");
 	var placesRef = firebase.database().ref('places').child('data');
 	$scope.places = $firebaseArray(placesRef);

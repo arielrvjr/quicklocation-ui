@@ -5,17 +5,19 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 	var placesRef = firebase.database().ref('places').child('data');
 	$scope.places = $firebaseArray(placesRef);
 
-
+	$scope.orderProperty = '-updatesCount';
 	$scope.goToPlace = function(id,ev){
 		$location.path('/place/'+id);
 	};
-/*	$scope.save = function(){
-		angular.forEach($scope.placeUpdates,function(issue){
-			if (issue.done == true){
-
-			}
-		});
-	};*/
+	$scope.setOrderProperty = function(propertyName) {
+    if ($scope.orderProperty === propertyName) {
+        $scope.orderProperty = '-' + propertyName;
+    } else if ($scope.orderProperty === '-' + propertyName) {
+        $scope.orderProperty = propertyName;
+    } else {
+        $scope.orderProperty = propertyName;
+    }
+};
 	$scope.edit = function(event){
 		var confirm = $mdDialog.confirm()
 		.title('Editar')

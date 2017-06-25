@@ -13,7 +13,7 @@
         </md-input-container>
         </md-subheader>
         <!-- si es mobile -->
-          <md-list-item hide-gt-sm class="md-3-line" ng-repeat="(index, item) in places | orderBy: 'updatesCount':true | filter: search"  ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
+          <md-list-item hide-gt-sm class="md-3-line" ng-repeat="(index, item) in places | orderBy: orderProperty | filter: search"  ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
            
           <div class="md-list-item-text" layout="column" md-colors="{color: 'grey-700'}" >
             <div >
@@ -26,15 +26,16 @@
         </md-list-item>
         <!-- si es mas grande -->
         <md-subheader md-whiteframe="1" class="md-no-sticky" hide show-gt-sm md-colors="{color: 'primary-300', background: 'grey-A100'}">
-            <div layout="row" >
-              <div flex="15" ><strong>Rating</strong></div>
-              <div flex="25" ><strong>Nombre</strong></div>
-              <div flex="25" ><strong>Dirección</strong></div>
-              <div flex="15" ><strong>Número Telefónico</strong></div>                            <div flex="10" ><strong>Comentarios</strong></div>
-              <div flex="10" ><strong>Modificaciones</strong></div>
+            <div layout="row">
+              <a flex="15" ng-click="setOrderProperty('rating')"><strong>Rating</strong></a>
+              <a flex="25" ng-click="setOrderProperty('name')"><strong>Nombre</strong></a>
+              <a flex="25" ng-click="setOrderProperty('formattedAddress')"><strong>Dirección</strong></a>
+              <a flex="15" ng-click="setOrderProperty('formattedPhoneNumber')"><strong>Número Telefónico</strong></a>                
+              <a flex="10" ng-click="setOrderProperty('reviewsCount')"><strong>Comentarios</strong></a>
+              <a flex="10" ng-click="setOrderProperty('updatesCount')"><strong>Modificaciones</strong></a>
             </div>
           </md-subheader>
-        <md-list-item hide  show-gt-sm ng-repeat="(index, item) in places | orderBy: 'updatesCount':true | filter: search" ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}" layout="row">
+        <md-list-item hide  show-gt-sm ng-repeat="(index, item) in places | orderBy: orderProperty | filter: search" ng-click="goToPlace(item.$id, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}" layout="row">
 
           <div flex class="md-list-item-text"  md-colors="{color: 'grey-700'}" layout="row">
             <div flex="100" layout-align="space-around center"  layout="row">
