@@ -56,6 +56,13 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 				}
 			});
 			$scope.places.$save($scope.place);
+			$mdToast.show(
+    		$mdToast.simple()
+    		.textContent("Cambios guardados")
+    		.toastClass('md-warn')
+    		.position('bottom right')
+    		.hideDelay(3000)
+    		);
 		};
 		$scope.deleteUpdate = function(item,ev){
 			var confirm = $mdDialog.confirm()
