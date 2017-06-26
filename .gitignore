@@ -2,8 +2,7 @@ logs/*
 !.gitkeep
 node_modules/
 app/bower_components/
-app/js/Config.json
-dist/js/Config.json
+app/js/firebaseconfig.json
 tmp
 .DS_Store
 .idea
