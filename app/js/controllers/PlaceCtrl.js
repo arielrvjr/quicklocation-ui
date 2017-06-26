@@ -7,9 +7,6 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 
 	$scope.orderProperty = '-updatesCount';
 
-	$scope.selectTab = function(tab){
-		console.log(tab);
-	};
 
 	$scope.goToPlace = function(id,ev){
 		$location.path('/place/'+id);

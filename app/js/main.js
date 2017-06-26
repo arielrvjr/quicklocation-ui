@@ -19,7 +19,7 @@ var app = angular.module('quicklocation', [ngMaterial, ngRoutes,angularfire]);
 
 //service
 var LoginService = require('./services/LoginService');
-//var RunService = require('./services/RunService');
+var RunService = require('./services/RunService');
 
 app.factory('LoginService', ['$log','$rootScope','$firebaseAuth','$location','$mdToast', LoginService]);
 //Controllers;
@@ -43,4 +43,4 @@ app.controller('CommentCtrl', ['$log', '$scope','$mdDialog','$firebaseArray','$m
 app.config(Config);
 
 require('./components/ratingstar');
-/*app.run(['$rootScope', '$location','$mdToast','LoginService', RunService]);*/
+app.run(['$rootScope', '$location','$mdToast','LoginService', RunService]);
