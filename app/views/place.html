@@ -17,7 +17,7 @@
            
           <div class="md-list-item-text" layout="column" md-colors="{color: 'grey-700'}" >
             <div >
-              <h3><strong>{{item.name}}</strong> <ratingstar rating="item.rating" ></ratingstar></h3>
+              <h3><strong>{{item.name}}</strong> <ratingstar md-colors="{color: 'primary'}"  rating="item.rating" ></ratingstar></h3>
             <p>{{item.formattedAddress}} | {{item.formattedPhoneNumber}}</p>
             <p><md-icon>insert_comment</md-icon>{{item.reviewsCount}}</span> <md-icon>rate_review</md-icon>{{item.updatesCount}}</span></p>
             
@@ -39,7 +39,7 @@
 
           <div flex class="md-list-item-text"  md-colors="{color: 'grey-700'}" layout="row">
             <div flex="100" layout-align="space-around center"  layout="row">
-              <div flex="15"><ratingstar rating="item.rating" ></ratingstar></div>
+              <div flex="15"><ratingstar md-colors="{color: 'primary'}"  rating="item.rating" ></ratingstar></div>
               <div flex="25">{{item.name}}</div>
               <div flex="25">{{item.formattedAddress}}</div>
               <div flex="15">{{item.formattedPhoneNumber}}</div>

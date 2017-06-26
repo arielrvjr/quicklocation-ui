@@ -1,7 +1,7 @@
 angular.module('quicklocation').component('ratingstar',{
 	template: [
 '<span ng-repeat="star in $ctrl.stars" >',
-'<md-icon md-colors="{color: \'primary\'}">{{star.value}}</md-icon>',
+'<md-icon >{{star.value}}</md-icon>',
 '<span>',
 	].join(''),
 	bindings: {rating: '<'},

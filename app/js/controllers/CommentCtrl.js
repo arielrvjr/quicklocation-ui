@@ -55,10 +55,9 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 
     $mdDialog.show(confirm).then(function() {
     	//vamos a eliminar
-
+      item.remove=true;
     	$scope.prepareItem(item);
     	//delete $scope.record[$scope.editid];
-      $scope.record.remove = true;
       console.log('guardamos:', $scope.record);
     	$scope.placesComment.$save($scope.record);
     	$mdToast.show(
@@ -84,9 +83,10 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 
     $mdDialog.show(confirm).then(function(result) {
     	item.comment = result;
+      item.done=true;
     	$scope.prepareItem(item);
     	$scope.record[$scope.editid]= $scope.edititem;
-      $scope.record.done=true;
+      
     	$scope.placesComment.$save($scope.record);
     	$mdToast.show(
             $mdToast.simple()

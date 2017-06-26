@@ -17,7 +17,7 @@
         
           <div class="md-list-item-text w-100"  layout="column" md-colors="{color: 'grey-700'}" >
             <div >
-              <h3><strong>{{item.place.name}}</strong> <ratingstar rating="item.rating" ></ratingstar></h3>
+              <h3><strong>{{item.place.name}}</strong> <ratingstar md-colors="{color: 'primary'}" rating="item.rating" ></ratingstar></h3>
               <p>{{item.authorName}}</p>
             <p>{{item.comment}}</p>
              <md-icon ng-if="currentUser()" class="md-secondary" ng-click="editComment(item,$event)">edit</md-icon>
@@ -38,7 +38,7 @@
 
           <div class="md-list-item-text w-100"  layout="column" md-colors="{color: 'grey-700'}" >
             <div layout="row" layout-align="space-around center"   md-colors="{color: 'grey-700'}"    layout-padding  >
-              <div flex="20"><ratingstar rating="item.rating" ></ratingstar></div>                            
+              <div flex="20"><ratingstar  md-colors="{color: 'primary'}"  rating="item.rating" ></ratingstar></div>                            
               <div flex="20">{{item.place.name}}</div>
               <div flex="20">{{item.authorName}}</div>
               <div flex>{{item.comment}}</div>
