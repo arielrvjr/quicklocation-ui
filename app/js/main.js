@@ -34,8 +34,8 @@ var TopUsersCtrl =   require('./controllers/TopUsersCtrl');
 
 app.controller('MainCtrl', ['$log','$location', '$rootScope','$window','$mdMedia','$mdSidenav','LoginService', MainCtrl]);
 app.controller('DashboardCtrl', ['$log', '$scope','$firebaseArray', DashboardCtrl]);
-app.controller('LastCommentsCtrl', ['$log', '$scope','$firebaseArray', LastCommentsCtrl]);
-app.controller('TopUsersCtrl', ['$log', '$scope','$firebaseArray', TopUsersCtrl]);
+app.controller('LastCommentsCtrl', ['$log', '$scope','$rootScope','$firebaseArray','$firebaseObject', LastCommentsCtrl]);
+app.controller('TopUsersCtrl', ['$log', '$scope','$rootScope','$firebaseArray', TopUsersCtrl]);
 
 app.controller('LoginCtrl', ['$log', '$scope','LoginService', LoginCtrl]);
 app.controller('PlaceCtrl', ['$log', '$scope','$location','$routeParams','$firebaseArray','$firebaseObject','$mdDialog','$mdToast', PlaceCtrl]);

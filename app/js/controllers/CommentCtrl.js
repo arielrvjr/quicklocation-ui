@@ -23,11 +23,12 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 */		angular.forEach($scope.placesComment,function(place){
 		angular.forEach(place,function(comment,id){ 
 			if (typeof comment === 'object' && comment != null){
+        var comentario = angular.copy(comment);
 				$scope.places.$loaded().then(function(x) {
-    				comment.place = x.$getRecord(place.$id);
+    				comentario.place = x.$getRecord(place.$id);
 				});
-				comment.$id = id;
-				this.push(comment);
+				comentario.$id = id;
+				this.push(comentario);
 			}
 			
 		},$scope.comments);
@@ -56,7 +57,9 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
     	//vamos a eliminar
 
     	$scope.prepareItem(item);
-    	delete $scope.record[$scope.editid];
+    	//delete $scope.record[$scope.editid];
+      $scope.record.remove = true;
+      console.log('guardamos:', $scope.record);
     	$scope.placesComment.$save($scope.record);
     	$mdToast.show(
             $mdToast.simple()
@@ -83,6 +86,7 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
     	item.comment = result;
     	$scope.prepareItem(item);
     	$scope.record[$scope.editid]= $scope.edititem;
+      $scope.record.done=true;
     	$scope.placesComment.$save($scope.record);
     	$mdToast.show(
             $mdToast.simple()

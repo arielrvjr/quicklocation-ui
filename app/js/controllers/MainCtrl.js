@@ -21,7 +21,7 @@ var mainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,L
       $rootScope.currentUser = function(){
         return LoginService.currentUser();
       };
-        console.log('current:', $rootScope.currentUser());
+        //console.log('current:', $rootScope.currentUser());
 
     $rootScope.openMenu = function($mdMenu, ev){
       originatorEv = ev;

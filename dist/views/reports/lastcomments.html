@@ -9,11 +9,11 @@
   <div layout="row" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
   	  <md-datepicker flex ng-model="desde" md-placeholder="Fecha Desde"></md-datepicker>
       <md-datepicker flex ng-model="hasta" md-placeholder="Fecha Hasta"></md-datepicker>
-      <md-button flex="10" class="md-raised md-accent">Buscar</md-button>
+      <md-button flex="10" class="md-raised md-accent"  ng-click="buscar()">Buscar</md-button>
 
   </div>
    <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
-        <md-list-item  ng-repeat="item in top10lastReview" class="md-3-line" layout="row">
+        <md-list-item  ng-repeat="item in top10lastReview.response" class="md-3-line" layout="row">
         <div class="md-list-item-text" layout="row">
          <div flex="20" layout-align="center center">
           {{ item.date }}

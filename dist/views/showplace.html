@@ -41,8 +41,8 @@
         <div layout="row">
           
           
-        </div>
-        <md-tabs  class="md-accent" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}" ng-show="(currentUser() && placeUpdates.length>0) || placeReviews.length>0">
+        
+        <md-tabs flex="100" class="md-accent" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}" ng-show="(currentUser() && placeUpdates.length>0) || placeReviews.length>0">
           <md-tab id="tab1"  ng-show="placeReviews.length>0">
             <md-tab-label>Comentarios</md-tab-label>
             <md-tab-body>
@@ -67,7 +67,7 @@
             <md-tab-body>
              <md-list >
 
-              <md-list-item class="md-3-line" ng-repeat="item in placeUpdates | orderBy:done " md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+              <md-list-item class="md-3-line" ng-repeat="item in placeUpdates | filter: {remove:false} | orderBy:done " md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
                 <md-checkbox ng-model="item.done"></md-checkbox>
                 <div class="md-list-item-text">
                   <h3>{{item.field_human}}</h3>
@@ -84,7 +84,7 @@
         </md-tab>
       </md-tabs>
 
-
+</div>
 
 
 

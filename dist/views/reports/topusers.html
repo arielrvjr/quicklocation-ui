@@ -8,12 +8,12 @@
   <div layout="row" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
       <md-datepicker flex ng-model="desde" md-placeholder="Fecha Desde"></md-datepicker>
       <md-datepicker flex ng-model="hasta" md-placeholder="Fecha Hasta"></md-datepicker>
-      <md-button flex="10" class="md-raised md-primary">Buscar</md-button>
+      <md-button flex="10" class="md-raised md-primary" ng-click="buscar()">Buscar</md-button>
 
   </div>
        <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
 <!--               <md-subheader class="md-no-sticky" md-colors="{background: 'primary', color:'grey-A100'}">Usuarios más Activos</md-subheader>
- -->        <md-list-item  ng-repeat="item in topuser"  >
+ -->        <md-list-item  ng-repeat="item in topuser.response"  >
             <div flex="100" class="md-list-item-text">
             <p>{{ item.authorName }}</p>
           </div>

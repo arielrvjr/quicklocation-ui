@@ -54,6 +54,7 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 						$scope.place[item.field] = item.value;
 
 					}
+					$scope.place.updateAcept += 1;
 					$scope.placeUpdates.$save(item);
 				}
 			});
@@ -76,7 +77,8 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 
 			$mdDialog.show(confirm).then(function() {
     	//vamos a eliminar
-    	$scope.placeUpdates.$remove(item);
+    	item.remove = true;
+    	$scope.placeUpdates.$save(item);
     	$mdToast.show(
     		$mdToast.simple()
     		.textContent("Actualización Eliminada")
@@ -119,7 +121,8 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 
 			$mdDialog.show(confirm).then(function() {
     	//vamos a eliminar
-    	$scope.placeReviews.$remove(item);
+    	item.remove= true;
+    	$scope.placeReviews.$save(item);
     	$mdToast.show(
     		$mdToast.simple()
     		.textContent("Comentario Eliminado")
