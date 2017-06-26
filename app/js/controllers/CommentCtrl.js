@@ -57,7 +57,7 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
     	//vamos a eliminar
       item.remove=true;
     	$scope.prepareItem(item);
-    	//delete $scope.record[$scope.editid];
+    	delete $scope.record[$scope.editid];
       console.log('guardamos:', $scope.record);
     	$scope.placesComment.$save($scope.record);
     	$mdToast.show(

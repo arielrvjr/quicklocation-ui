@@ -1,13 +1,99 @@
-<md-content layout-fill layout="column" layout-align="center start" md-colors="{background: 'grey-200'}">
-  <md-toolbar layout="row" >
+<md-content layout="column" md-colors="{background: 'grey-200'}">
+  <!-- titulo -->
+  <md-toolbar flex="10" layout="row" >
     <div class="md-toolbar-tools">
      <span class="md-headline"><md-button class="md-icon-button" md-ripple-size="auto" href="/#!/place">
       <md-icon>arrow_back</md-icon>
-    </md-button> {{place.name}} <ratingstar md-colors="{color: 'grey-A100'}" rating="place.rating" ></ratingstar></span>
+    </md-button> {{place.name}} <ratingstar show-gt-sm hide md-colors="{color: 'grey-A100'}" rating="place.rating" ></ratingstar><span hide-gt-sm>| {{place.rating | number:1}}</span>  </span>
   </div>
 </md-toolbar> 
+<!-- datos -->
+<md-toolbar  class="md-menu-toolbar"  flex="10" layout="row" >
+  <div class="md-toolbar-tools">
+   <span class="md-headline">Datos</span>
+   <span flex></span>
+   
+ </div>
+</md-toolbar> 
+<md-list  layout="row" layout-wrap  md-colors="{ background: 'grey-A100'}">
+  <md-list-item flex>
+    <p  ng-if="place.formattedPhoneNumber"><md-icon>phone</md-icon><strong>Telefono:</strong> {{place.formattedPhoneNumber}}</p>
+  </md-list-item>
+  <md-list-item flex>
+    <p  ng-if="place.formattedAddress"><md-icon>place</md-icon><strong>Dirección:</strong> {{place.formattedAddress}}</p>
+  </md-list-item>
+  <md-list-item flex>
+    <p ng-if="place.geometry.location"><md-icon>my_location</md-icon><strong>Localización:</strong> ({{place.geometry.location.lat}},{{place.geometry.location.lng}})</p>
+  </md-list-item>
+  <md-list-item flex>
+    <p  ng-if="place.website"><md-icon>web</md-icon><strong>Web:</strong> {{place.website}}</p>
+  </md-list-item> 
+</md-list>
+<md-toolbar ng-if="place.openingHours"  class="md-menu-toolbar"  flex="10" layout="row" >
+  <div class="md-toolbar-tools">
+   <span class="md-headline"><md-icon>schedule</md-icon>Horarios</span>
+   <span flex></span>
+   <p ng-if="place.openingHours.openNow">Abierto en estos momentos.</p>
+   <p ng-if="!place.openingHours.openNow">Cerrado en estos momentos.</p>
+ </div>
+</md-toolbar> 
+<md-list layout="row" layout-wrap md-colors="{ background: 'grey-A100'}">
+  <md-list-item ng-repeat="item in place.openingHours.weekdayText">
+    <div class="md-list-item-text compact">
+      <h3>{{item.slice(0,item.indexOf(':'))}}</h3>
+      <p>{{item.slice(item.indexOf(':')+1)}}</p>
+    </div>
+    
+  </md-list-item>
+</md-list>
 
+<div layout="row" md-colors="{ background: 'grey-A100'}">
+  <md-tabs flex="100" md-selected="selectedIndex" md-colors="{background: 'grey-A100'}">
+    <md-tab id="Comentarios" ng-if="placeReviews"  md-stretch-tabs md-on-select="onTabSelected(tab)" md-on-deselect="announceDeselected(tab)" ng-disabled="tab.disabled">
+      <md-tab-label>
+        Comentarios
+      </md-tab-label>
+      <md-tab-body md-whiteframe="1" md-colors="{background: 'grey-A100'}">
+        <md-list>
+          <md-list-item class="md-2-line" ng-repeat="item in placeReviews" >
+            <div class="md-list-item-text">
+              <h3>{{item.authorName}} <ratingstar md-colors="{color: 'primary'}"  rating="item.rating" ></ratingstar></h3>
+              <p>{{item.comment}}</p>
+            </div>
+             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="editComment(item,$event)">edit</md-icon>
+ <md-icon ng-if="currentUser()"  class="md-secondary" ng-click="deleteComment(item,$event)">delete</md-icon>
+            </md-list>
+          </md-tab-body>
+        </md-tab>
+        <md-tab md-active="updatesActive" id="Actualizaciones" ng-if="currentUser() && placeUpdates.length>0" md-on-select="onTabSelected(tab) " md-on-deselect="announceDeselected(tab)" ng-disabled="tab.disabled" >
+          <md-tab-label>
+            Actualizaciones
+          </md-tab-label>
+          <md-tab-body  md-whiteframe="1" md-colors="{background: 'grey-A100'}">
+            <md-list>
+              <md-list-item class="md-3-line" ng-repeat="item in placeUpdates | orderBy:done " md-colors="{background: 'grey-A100'}">
+                <md-checkbox ng-model="item.done"></md-checkbox>
+                <div class="md-list-item-text">
+                  <h3>{{item.field_human}}</h3>
+                  <p ng-if="!((item.field == 'openingHours') || (item.field == 'location'))">{{item.value}}</p>
+                  <p ng-if="(item.field == 'openingHours')">
+                  {{item.value.weekdayText.join(', ')}}</p>
+                  <p ng-if="item.field == 'location'">
+                  {{item.value.location.lat}}, {{item.value.location.lng}}</p>
+                  <p>Notificado  por: {{item.author}}</p>
 
+                </div>
+                <md-icon class="md-secondary" ng-click="deleteUpdate(item,$event)">delete</md-icon>
+              </md-list-item>
+            </md-list>
 
+          </md-tab-body>
+        </md-tab>
+      </md-tabs>
+    </div>
+   <div layout="row" layout-align="center center" md-colors="{background: 'grey-A100'}">
 
-</md-content>
+      <md-button ng-show="(currentUser() && placeUpdates.length>0 && selectedIndex == 1)" ng-click="guardarCambios()"  class="md-button md-accent" aria-label="guardar cambios">Guardar Cambios</md-button>
+
+    </div>
+  </md-content>

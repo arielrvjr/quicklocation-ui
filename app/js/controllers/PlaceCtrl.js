@@ -6,6 +6,11 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 	$scope.places = $firebaseArray(placesRef);
 
 	$scope.orderProperty = '-updatesCount';
+
+	$scope.selectTab = function(tab){
+		console.log(tab);
+	};
+
 	$scope.goToPlace = function(id,ev){
 		$location.path('/place/'+id);
 	};
@@ -120,9 +125,7 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 			.cancel('Cancelar');
 
 			$mdDialog.show(confirm).then(function() {
-    	//vamos a eliminar
-    	item.remove= true;
-    	$scope.placeReviews.$save(item);
+    	$scope.placeReviews.$remove(item);
     	$mdToast.show(
     		$mdToast.simple()
     		.textContent("Comentario Eliminado")
@@ -148,6 +151,7 @@ var placeCtrl = function($log, $scope,$location,$routeParams,$firebaseArray,$fir
 
 			$mdDialog.show(confirm).then(function(result) {
 				item.comment = result;
+				item.done=true;
 /*				console.log('actualizar:', item);
 */				$scope.placeReviews.$save(item);
 				$mdToast.show(
