@@ -86,7 +86,7 @@ md-list-item._md-button-wrap>div.md-button:first-child {
 
 
 </head>
-<body ng-controller="MainCtrl" md-colors="{background: 'grey-200'}">
+<body ng-controller="MainCtrl" md-colors="{background: 'grey-200'}" >
 
 
   <div layout="column">
@@ -126,7 +126,7 @@ md-list-item._md-button-wrap>div.md-button:first-child {
      <md-sidenav 
         md-colors="{background: 'grey-200'}"
         class="md-sidenav-left" md-component-id="left"
-        md-is-locked-open="$mdMedia('gt-md')" layout-padding>
+        md-is-locked-open="$mdMedia('gt-md')" layout-padding ng-cloak> 
       <md-list> 
 
         <md-list-item  ng-repeat="setting in settings" ng-click="navigateTo(setting.url)">
