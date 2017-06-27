@@ -106,7 +106,7 @@ md-list-item._md-button-wrap>div.md-button:first-child {
 
 
       <md-menu ng-if="user" md-position-mode="target-right target" md-offset="0 50">
-      <md-button aria-label="Open Menu" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+      <md-button aria-label="Open Menu" class="md-icon-button" ng-cloak ng-click="openMenu($mdMenu, $event)">
         <img ng-src="{{user.photoURL|| user.placeholder}}" alt="{{user.displayName}}" class="md-user-avatar">
       </md-button>
       <md-menu-content width="4" >

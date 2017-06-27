@@ -1,17 +1,30 @@
 <md-content layout="row" layout-xs="column" layout-sm="column" layout-fill md-colors="{color: 'primary'}" md-colors="{background: 'grey-A100'}" layout-wrap>
-  <div flex="100" flex-sm="100" flex-xs="100" layout-padding>
+  <div flex="100" flex-sm="100" flex-xs="100" layout="column">
 <!--   <md-subheader class="md-no-sticky" md-colors="{background: 'primary', color:'grey-A100'}">Últimos Comentarios</md-subheader> -->
   <md-toolbar layout="row">
       <div class="md-toolbar-tools">
         <span>Últimos Comentarios</span>
       </div>
   </md-toolbar>
-  <div layout="row" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
-  	  <md-datepicker flex ng-model="desde" md-placeholder="Fecha Desde"></md-datepicker>
-      <md-datepicker flex ng-model="hasta" md-placeholder="Fecha Hasta"></md-datepicker>
-      <md-button flex="10" class="md-raised md-accent"  ng-click="buscar()">Buscar</md-button>
-
-  </div>
+  <form name="searchForm" flex="10" flex md-whiteframe="1"  layout="row" layout-align="start center" md-colors="{background: 'grey-A100'}" >
+      <md-input-container>
+        <label>Desde</label>
+        <md-datepicker ng-model="desde" name="desde" ></md-datepicker>
+        <div ng-messages="searchForm.desde.$error">
+          <div ng-message="valid">El valor ingresado no es una fecha!</div>
+          <div ng-message="required">Esta fecha es requerida!</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Hasta</label>
+        <md-datepicker ng-model="hasta" name="hasta" ></md-datepicker>
+        <div ng-messages="searchForm.hasta.$error">
+          <div ng-message="valid">El valor ingresado no es una fecha!</div>
+          <div ng-message="required">Esta fecha es requerida!</div>
+        </div>
+      </md-input-container>
+      <md-button flex="10" class="md-raised md-accent" ng-click="buscar()">Buscar</md-button>
+  </form>
    <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
         <md-list-item  ng-repeat="item in top10lastReview.response" class="md-3-line" layout="row">
         <div class="md-list-item-text" layout="row">

@@ -1,59 +1,71 @@
 <md-content layout="column" layout-fill md-colors="{color: 'primary'}">
-<md-toolbar layout="row" layout-align="center center">
-      <div class="md-toolbar-tools" >
-        <span>Comentarios</span>
-        <span flex></span>
-      </div>
-    </md-toolbar>
+  <md-toolbar layout="row" layout-align="center center">
+    <div class="md-toolbar-tools" >
+      <span>Comentarios</span>
+      <span flex></span>
+    </div>
+  </md-toolbar>
   <md-list flex="100"  md-colors="{background: 'grey-200'}">
-        <md-subheader md-colors="{background: 'grey-A100'}">
-          <md-input-container md-no-float class="md-block" md-position-mode="target-right target-center" layout-align="center center">
-          <input type="text" ng-model="search" placeholder="Filtro" >
-          <md-icon>search</md-icon>
-        </md-input-container>
-        </md-subheader>
-        <!-- si es mobile -->
-          <md-list-item hide-gt-sm class="md-3-line" ng-repeat="(index, item) in comments| filter: search"  ng-click="goToPlace(index, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
-        
-          <div class="md-list-item-text w-100"  layout="column" md-colors="{color: 'grey-700'}" >
-            <div >
-              <h3><strong>{{item.place.name}}</strong> <ratingstar md-colors="{color: 'primary'}" rating="item.rating" ></ratingstar></h3>
-              <p>{{item.authorName}}</p>
-            <p>{{item.comment}}</p>
-             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="editComment(item,$event)">edit</md-icon>
-             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="deleteComment(item,$event)">delete</md-icon>
-            </div>
-          </div> 
-        </md-list-item>
-        <!-- si es mas grande -->
-        <md-subheader class="md-no-sticky" hide show-gt-sm md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
-            <div layout="row" md-colors="{color: 'primary-300'}">
-              <a flex="20" ng-click="setOrderProperty('rating')"><strong>Rating</strong></a>
-              <a flex="20" ng-click="setOrderProperty('place.name')"><strong>Lugar</strong></a>
-              <a flex="20" ng-click="setOrderProperty('authorName')"><strong>Autor</strong></a>
-              <a flex="grow" ng-click="setOrderProperty('comment')"><strong>Texto</strong></a>
-            </div>
-          </md-subheader>
-      <md-list-item hide show-gt-sm ng-repeat=" item in comments| orderBy: orderProperty | filter: search"  md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+    <md-subheader md-colors="{background: 'grey-A100'}">
+      <md-input-container md-no-float class="md-block" md-position-mode="target-right target-center" layout-align="center center">
+        <input type="text" ng-model="search" placeholder="Filtro" >
+        <md-icon>search</md-icon>
+      </md-input-container>
+    </md-subheader>
+    <!-- si es mobile -->
+    <md-list-item hide-gt-sm class="md-3-line" ng-repeat="(index, item) in comments| filter: search"  ng-click="goToPlace(index, $event)" md-whiteframe="1" md-colors="{background: 'grey-A100'}">
 
-          <div class="md-list-item-text w-100"  layout="column" md-colors="{color: 'grey-700'}" >
-            <div layout="row" layout-align="space-around center"   md-colors="{color: 'grey-700'}"    layout-padding  >
-              <div flex="20"><ratingstar  md-colors="{color: 'primary'}"  rating="item.rating" ></ratingstar></div>                            
-              <div flex="20">{{item.place.name}}</div>
-              <div flex="20">{{item.authorName}}</div>
-              <div flex>{{item.comment}}</div>
-              <md-icon ng-if="currentUser()" class="md-secondary" ng-click="editComment(item,$event)">edit</md-icon>
-             <md-icon ng-if="currentUser()" class="md-secondary" ng-click="deleteComment(item,$event)">delete</md-icon>
-            </div>
+      <div class="md-list-item-text w-100"  layout="column" md-colors="{color: 'grey-700'}" >
+        <div >
+          <h3><strong>{{item.place.name}}</strong> <ratingstar md-colors="{color: 'primary'}" rating="item.rating" ></ratingstar></h3>
+          <p>{{item.authorName}}</p>
+          <p>{{item.comment}}</p>
+          <md-button class="md-secondary md-icon-button" aria-label="Eliminar" ng-if="currentUser()" ng-click="editComment(item,$event)">
+          <md-tooltip md-direction="top">Editar</md-tooltip>
+           <md-icon   >edit</md-icon>
+         </md-button>
+         <md-button class="md-secondary md-icon-button" aria-label="Eliminar" ng-if="currentUser()" ng-click="deleteComment(item,$event)">
+           <md-tooltip md-direction="top">Eliminar</md-tooltip>
+           <md-icon   >delete</md-icon>
+         </md-button>
+       </div>
+     </div> 
+   </md-list-item>
+   <!-- si es mas grande -->
+   <md-subheader class="md-no-sticky" hide show-gt-sm md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
+    <div layout="row" md-colors="{color: 'primary-300'}">
+      <a flex="20" ng-click="setOrderProperty('rating')"><strong>Rating</strong></a>
+      <a flex="20" ng-click="setOrderProperty('place.name')"><strong>Lugar</strong></a>
+      <a flex="20" ng-click="setOrderProperty('authorName')"><strong>Autor</strong></a>
+      <a flex="grow" ng-click="setOrderProperty('comment')"><strong>Texto</strong></a>
+    </div>
+  </md-subheader>
+  <md-list-item hide show-gt-sm ng-repeat=" item in comments| orderBy: orderProperty | filter: search"  md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
 
-          </div> 
+    <div class="md-list-item-text w-100"  layout="column" md-colors="{color: 'grey-700'}" >
+      <div layout="row" layout-align="space-around center"   md-colors="{color: 'grey-700'}"    layout-padding  >
+        <div flex="20"><ratingstar  md-colors="{color: 'primary'}"  rating="item.rating" ></ratingstar></div>                            
+        <div flex="20">{{item.place.name}}</div>
+        <div flex="20">{{item.authorName}}</div>
+        <div flex>{{item.comment}}</div>
+        <md-button class="md-secondary md-icon-button" aria-label="Eliminar" ng-if="currentUser()" ng-click="editComment(item,$event)">
+          <md-tooltip md-direction="top">Editar</md-tooltip>
+           <md-icon   >edit</md-icon>
+         </md-button>
+         <md-button class="md-secondary md-icon-button" aria-label="Eliminar" ng-if="currentUser()" ng-click="deleteComment(item,$event)">
+           <md-tooltip md-direction="top">Eliminar</md-tooltip>
+           <md-icon   >delete</md-icon>
+         </md-button>
+      </div>
 
-        </md-list-item>
+    </div> 
+
+  </md-list-item>
 
 
-      </md-list>  
+</md-list>  
 
 
 
 
-    </md-content>
+</md-content>
