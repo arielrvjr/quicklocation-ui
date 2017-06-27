@@ -25,10 +25,10 @@ gulp.task('browserify', function() {
     debug: true
   }))
   .pipe(concat('app.js', {newLine: ';'}))
-/*  .pipe(ngAnnotate())
-*/ /* .pipe(bytediff.start())
+  .pipe(ngAnnotate())
+  .pipe(bytediff.start())
         .pipe(uglify({mangle: false}))
-      .pipe(bytediff.stop())*/
+      .pipe(bytediff.stop())
   .pipe(sourcemaps.write())
 
   // Output it to our dist folder

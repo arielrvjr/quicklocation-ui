@@ -6,27 +6,27 @@
         <span>Últimos Comentarios</span>
       </div>
   </md-toolbar>
-  <form name="searchForm" flex="10" flex md-whiteframe="1"  layout="row" layout-align="start center" md-colors="{background: 'grey-A100'}" >
-      <md-input-container>
-        <label>Desde</label>
+  <form name="searchForm" flex="10" md-whiteframe="1"  layout="row" layout-align="start center" md-colors="{background: 'grey-A100'}" >
+      <!-- <md-input-container>
+        <label>Desde</label> -->
         <md-datepicker ng-model="desde" name="desde" ></md-datepicker>
-        <div ng-messages="searchForm.desde.$error">
+<!--         <div ng-messages="searchForm.desde.$error">
           <div ng-message="valid">El valor ingresado no es una fecha!</div>
           <div ng-message="required">Esta fecha es requerida!</div>
         </div>
-      </md-input-container>
-      <md-input-container>
-        <label>Hasta</label>
+      </md-input-container> -->
+      <!-- <md-input-container>
+        <label>Hasta</label> -->
         <md-datepicker ng-model="hasta" name="hasta" ></md-datepicker>
-        <div ng-messages="searchForm.hasta.$error">
+        <!-- <div ng-messages="searchForm.hasta.$error">
           <div ng-message="valid">El valor ingresado no es una fecha!</div>
           <div ng-message="required">Esta fecha es requerida!</div>
         </div>
-      </md-input-container>
+      </md-input-container> -->
       <md-button flex="10" class="md-raised md-accent" ng-click="buscar()">Buscar</md-button>
   </form>
    <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
-        <md-list-item  ng-repeat="item in top10lastReview.response" class="md-3-line" layout="row">
+        <md-list-item ng-if="!(lastComments.length == 1 && lastComments[0].count==0)"  ng-repeat="item in lastComments" class="md-3-line" layout="row">
         <div class="md-list-item-text" layout="row">
          <div flex="20" layout-align="center center">
           {{ item.date }}
@@ -37,6 +37,15 @@
             <p> {{ item.comment }}</p>
 
             </div>
+
+        </div>
+        </md-list-item>
+        <md-list-item  ng-if="lastComments.length == 1 && lastComments[0].count==0" class="md-3-line" layout="row">
+        <div class="md-list-item-text" layout="row">
+         <div flex="100" layout-align="center center">
+          No existen datos para la consulta realizada.
+        </div>
+
 
         </div>
         </md-list-item>

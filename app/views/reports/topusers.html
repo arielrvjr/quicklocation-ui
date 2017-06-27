@@ -5,32 +5,45 @@
         <span>Usuarios más Activos</span>
       </div>
   </md-toolbar>
-  <form name="searchForm" flex="10" flex md-whiteframe="1"  layout="row" layout-align="start center" md-colors="{background: 'grey-A100'}">
-      <md-input-container>
-        <label>Desde</label>
+  <form name="searchForm" flex="10"  md-whiteframe="1"  layout="row" layout-align="start center" md-colors="{background: 'grey-A100'}">
+      <!-- <md-input-container>
+        <label>Desde</label> -->
         <md-datepicker ng-model="desde" name="desde" ></md-datepicker>
-        <div ng-messages="searchForm.desde.$error">
+        <!-- <div ng-messages="searchForm.desde.$error">
           <div ng-message="valid">El valor ingresado no es una fecha!</div>
           <div ng-message="required">Esta fecha es requerida!</div>
         </div>
       </md-input-container>
       <md-input-container>
-        <label>Hasta</label>
+        <label>Hasta</label> -->
         <md-datepicker ng-model="hasta" name="hasta" ></md-datepicker>
-        <div ng-messages="searchForm.hasta.$error">
+        <!-- <div ng-messages="searchForm.hasta.$error">
           <div ng-message="valid">El valor ingresado no es una fecha!</div>
           <div ng-message="required">Esta fecha es requerida!</div>
         </div>
-      </md-input-container>
+      </md-input-container> -->
       <md-button flex="10" class="md-raised md-accent" ng-click="buscar()">Buscar</md-button>
   </form>
        <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
-<!--               <md-subheader class="md-no-sticky" md-colors="{background: 'primary', color:'grey-A100'}">Usuarios más Activos</md-subheader>
- -->        <md-list-item  ng-repeat="item in topuser.response"  >
-            <div flex="100" class="md-list-item-text">
-            <p>{{ item.authorName }}</p>
-          </div>
+      <md-list-item ng-if="!(topuser.length == 1 && topuser[0].count==0)"  ng-repeat="item in topuser track by $index" class="md-3-line" layout="row">
+      <div class="md-list-item-text" layout="row">
+         <div flex="5" layout-align="center center">
+          <h3>#{{$index+1}}</h3>
+        </div>
+           
+            <h3 flex="20" ><strong md-colors="{color: 'primary'}">{{ item.name }} </strong> </h3>
+            <h4><strong md-colors="{color: 'accent'}">{{ item.count }}</strong></h4>
+
+           
+
+        </div>
+            
         </md-list-item>
+         <md-list-item  ng-if="topuser.length == 1 && topuser[0].count==0" class="md-3-line" layout="row">
+        <div class="md-list-item-text" layout="row">
+         <div flex="100" layout-align="center center">
+          No existen datos para la consulta realizada.
+        </div>
        </md-list>
 </div>
 </md-content>

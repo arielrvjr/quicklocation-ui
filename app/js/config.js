@@ -1,8 +1,10 @@
 'use strict';
+var moment = require('moment');
 
-
-module.exports =/* @ngInject */ function($routeProvider,$mdThemingProvider) {
-
+module.exports =/* @ngInject */ function($routeProvider,$mdThemingProvider,$mdDateLocaleProvider) {
+    $mdDateLocaleProvider.formatDate = function(date) {
+       return moment(date).format('YYYY-MM-DD');
+    };
 	$mdThemingProvider.theme('default')
     .primaryPalette('deep-orange')
     .accentPalette('blue');
