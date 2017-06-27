@@ -25,18 +25,20 @@
       <md-button flex="10" class="md-raised md-accent" ng-click="buscar()">Buscar</md-button>
   </form>
        <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
-      <md-list-item ng-if="!(topuser.length == 1 && topuser[0].count==0)"  ng-repeat="item in topuser track by $index" class="md-3-line" layout="row">
+       <md-subheader class="md-no-sticky" ng-if="topuser.length > 0 && !(topuser.length == 1 && topuser[0].count==0)" >
+       <div layout="row" ng-if="!(topuser.length == 1 && topuser[0].count==0)">
+          <span flex="10"><strong>Cantidad</strong></span>        
+          <span flex="20" ><strong md-colors="{color: 'primary'}">Usuario</strong> </span>
+          <span><strong md-colors="{color: 'accent'}">Cantidad de aportaciones</strong></span>
+        </div>
+         
+       </md-subheader>
+      <md-list-item ng-if="!(topuser.length == 1 && topuser[0].count==0)"  ng-repeat="item in topuser track by $index" class="md-2-line" layout="row">
       <div class="md-list-item-text" layout="row">
-         <div flex="5" layout-align="center center">
-          <h3>#{{$index+1}}</h3>
-        </div>
-           
-            <h3 flex="20" ><strong md-colors="{color: 'primary'}">{{ item.name }} </strong> </h3>
-            <h4><strong md-colors="{color: 'accent'}">{{ item.count }}</strong></h4>
-
-           
-
-        </div>
+          <span flex="10"><strong>#{{$index+1}}</strong></span>
+          <span flex="20" ><strong md-colors="{color: 'primary'}">{{ item.name }} </strong> </span>
+          <span><strong md-colors="{color: 'accent'}">{{ item.count }}</strong></span>
+     </div>
             
         </md-list-item>
          <md-list-item  ng-if="topuser.length == 1 && topuser[0].count==0" class="md-3-line" layout="row">
