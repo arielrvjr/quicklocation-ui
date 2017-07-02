@@ -22,26 +22,24 @@
           <div ng-message="required">Esta fecha es requerida!</div>
         </div>
       </md-input-container> -->
-      <md-button flex="10" class="md-raised md-accent" ng-click="buscar()">Buscar</md-button>
+      <md-button flex="10" class="md-raised md-accent" ng-disabled="buscando" ng-click="buscar()">Buscar</md-button>
   </form>
-       <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
-       <md-subheader class="md-no-sticky" ng-if="topuser.length > 0 && !(topuser.length == 1 && topuser[0].count==0)" >
+       <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" layout="row" layout-align="center center">
+<!--        <md-subheader class="md-no-sticky" ng-if="topuser.length > 0 && !(topuser.length == 1 && topuser[0].count==0)" >
        <div layout="row" ng-if="!(topuser.length == 1 && topuser[0].count==0)">
           <span flex="10"><strong>Cantidad</strong></span>        
           <span flex="20" ><strong md-colors="{color: 'primary'}">Usuario</strong> </span>
           <span><strong md-colors="{color: 'accent'}">Cantidad de aportaciones</strong></span>
         </div>
          
-       </md-subheader>
-      <md-list-item ng-if="!(topuser.length == 1 && topuser[0].count==0)"  ng-repeat="item in topuser track by $index" class="md-2-line" layout="row">
-      <div class="md-list-item-text" layout="row">
-          <span flex="10"><strong>#{{$index+1}}</strong></span>
-          <span flex="20" ><strong md-colors="{color: 'primary'}">{{ item.name }} </strong> </span>
-          <span><strong md-colors="{color: 'accent'}">{{ item.count }}</strong></span>
-     </div>
+       </md-subheader> -->
+      <md-list-item flex ng-if="!(topuser.length == 1 && topuser[0].count==0)" layout="row" layout-align="center center" >
+      <div flex class="md-list-item-text"  >
+        <highchart id="mostActiveUsers" config="mostActiveUsers"  ng-if="mostActiveUsers.series[0].data.length > 0" ></highchart>
+      </div>
             
         </md-list-item>
-         <md-list-item  ng-if="topuser.length == 1 && topuser[0].count==0" class="md-3-line" layout="row">
+         <md-list-item  flex ng-if="topuser.length == 1 && topuser[0].count==0" class="md-3-line" layout="row">
         <div class="md-list-item-text" layout="row">
          <div flex="100" layout-align="center center">
           No existen datos para la consulta realizada.

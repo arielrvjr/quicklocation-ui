@@ -23,7 +23,7 @@
     <p  ng-if="place.formattedAddress"><md-icon>place</md-icon><strong>Dirección:</strong> {{place.formattedAddress}}</p>
   </md-list-item>
   <md-list-item flex>
-    <p ng-if="place.geometry.location"><md-icon>my_location</md-icon><strong>Localización:</strong> ({{place.geometry.location.lat}},{{place.geometry.location.lng}})</p>
+    <p ng-if="place.geometry.location"><md-icon>my_location</md-icon><strong>Coordenadas:</strong> ({{place.geometry.location.lat}},{{place.geometry.location.lng}})</p>
   </md-list-item>
   <md-list-item flex>
     <p  ng-if="place.website"><md-icon>web</md-icon><strong>Web:</strong> {{place.website}}</p>
@@ -32,9 +32,7 @@
 <md-toolbar ng-if="place.openingHours"  class="md-menu-toolbar"  flex="10" layout="row" >
   <div class="md-toolbar-tools">
    <span class="md-headline"><md-icon>schedule</md-icon>Horarios</span>
-   <span flex></span>
-   <p ng-if="place.openingHours.openNow">Abierto en estos momentos.</p>
-   <p ng-if="!place.openingHours.openNow">Cerrado en estos momentos.</p>
+   
  </div>
 </md-toolbar> 
 <md-list layout="row" layout-wrap md-colors="{ background: 'grey-A100'}">
@@ -104,7 +102,11 @@
       </div>
       <div layout="row" layout-align="center center" md-colors="{background: 'grey-A100'}">
 
-        <md-button ng-show="(currentUser() && placeUpdates.length>0 && selectedIndex == 1)" ng-click="guardarCambios()"  class="md-button md-accent" aria-label="guardar cambios">Guardar Cambios</md-button>
+        <md-button ng-show="(currentUser() && placeUpdates.length>0 && selectedIndex == 1)" ng-click="guardarCambios()"  class="md-button md-accent" aria-label="guardar cambios">Guardar Cambios
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+
+        </md-button>
 
       </div>
     </md-content>
+

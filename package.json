@@ -36,10 +36,13 @@
     "angular-aria": "^1.6.4",
     "angular-material": "^1.1.4",
     "angular-messages": "^1.6.4",
+    "angular-moment": "^1.0.1",
     "angular-rating": "^3.0.3",
     "angular-route": "^1.6.4",
     "angular1-star-rating": "^1.2.11",
     "angularfire": "^2.3.0",
+    "highcharts-ng": "^1.0.1",
+    "highcharts": "^5.0.9",
     "moment": "^2.18.1"
   }
 }

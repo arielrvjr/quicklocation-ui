@@ -1,23 +1,25 @@
 'use strict';
 
-var mainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,LoginService) {
+var mainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,$firebaseArray,LoginService) {
  
       var originatorEv;
 
  	$rootScope.toggleLeft = buildToggler('left');
+  $rootScope.ref = $rootScope.ref || $firebaseArray(firebase.database().ref("places").child('main'));
+  $rootScope.ref.$loaded().then(function(a) {
+     $location.path('/');
+  });
+  
 
-	function buildToggler(componentId) {
+
+  function buildToggler(componentId) {
       return function() {
       	$log.debug("toggle:", componentId);
         $mdSidenav(componentId).toggle();
       };
     }
       $rootScope.screenIsLarge = $mdMedia('gt-md');
-      $window.onresize= function(ev){
-        $log.debug('resize',ev);
-        $rootScope.screenIsLarge = $mdMedia('gt-md'); 
-        $log.debug('screenIsLarge:'+$rootScope.screenIsLarge); 
-      };
+     
       $rootScope.currentUser = function(){
         return LoginService.currentUser();
       };

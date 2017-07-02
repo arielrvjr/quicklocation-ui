@@ -5,7 +5,8 @@ var angular = require('angular'); // That's right! We can just require angular a
 var ngMaterial = require('angular-material');
 var ngRoutes = require('angular-route');
 var angularfire = require('angularfire');
-
+var angularMoment = require('angular-moment');
+var highchartsNg = require('highcharts-ng');
 
 //config;
 var Config = require('./config.js');
@@ -14,7 +15,7 @@ global.firebase.initializeApp(configFirebase());
 
 
 
-var app = angular.module('quicklocation', [ngMaterial, ngRoutes,angularfire]);
+var app = angular.module('quicklocation', [ngMaterial, ngRoutes,angularfire,angularMoment,highchartsNg]);
 
 
 //service
@@ -32,10 +33,10 @@ var CommentCtrl =   require('./controllers/CommentCtrl');
 var LastCommentsCtrl =   require('./controllers/LastCommentsCtrl');
 var TopUsersCtrl =   require('./controllers/TopUsersCtrl');
 
-app.controller('MainCtrl', ['$log','$location', '$rootScope','$window','$mdMedia','$mdSidenav','LoginService', MainCtrl]);
+app.controller('MainCtrl', ['$log','$location', '$rootScope','$window','$mdMedia','$mdSidenav','$firebaseArray','LoginService', MainCtrl]);
 app.controller('DashboardCtrl', ['$log', '$scope','$firebaseArray', DashboardCtrl]);
-app.controller('LastCommentsCtrl', ['$log', '$scope','$rootScope','$firebaseArray','$firebaseObject', LastCommentsCtrl]);
-app.controller('TopUsersCtrl', ['$log', '$scope','$rootScope','$firebaseArray', TopUsersCtrl]);
+app.controller('LastCommentsCtrl', ['$log', '$scope','$rootScope','$firebaseArray','$firebaseObject', '$mdToast', LastCommentsCtrl]);
+app.controller('TopUsersCtrl', ['$log', '$scope','$rootScope','$mdToast','$firebaseArray', TopUsersCtrl]);
 
 app.controller('LoginCtrl', ['$log', '$scope','LoginService', LoginCtrl]);
 app.controller('PlaceCtrl', ['$log', '$scope','$location','$routeParams','$firebaseArray','$firebaseObject','$mdDialog','$mdToast', PlaceCtrl]);

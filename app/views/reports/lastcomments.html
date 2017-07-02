@@ -23,13 +23,14 @@
           <div ng-message="required">Esta fecha es requerida!</div>
         </div>
       </md-input-container> -->
-      <md-button flex="10" class="md-raised md-accent" ng-click="buscar()">Buscar</md-button>
+      <md-button flex="10" class="md-raised md-accent" ng-disabled="buscando" ng-click="buscar()">Buscar</md-button>
   </form>
-   <md-list flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" >
-        <md-list-item ng-if="!(lastComments.length == 1 && lastComments[0].count==0)"  ng-repeat="item in lastComments" class="md-3-line" layout="row">
-        <div class="md-list-item-text" layout="row">
+   <div flex >
+     <md-list md-scroll-y flex="grow" md-colors="{background: 'grey-A100'}" layout="column" >
+        <md-list-item ng-if="!(lastComments.length == 1 && lastComments[0].count==0)"  ng-repeat="item in lastComments" class="md-3-line" layout="row" md-colors="{background: 'grey-A100'}">
+        <div class="md-list-item-text" layout="row" >
          <div flex="20" layout-align="center center">
-          {{ item.date }}
+          {{ item.date  }}
         </div>
             <div>
             <h3><strong md-colors="{color: 'primary'}">{{ item.name }} </strong> <ratingstar rating="item.rating" ></ratingstar></h3>
@@ -50,6 +51,7 @@
         </div>
         </md-list-item>
        </md-list>
+   </div>
   </div>
 
 </md-content>

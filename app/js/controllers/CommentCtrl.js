@@ -3,6 +3,7 @@
 
 var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 	$scope.testVar = 'CommentCtrl';
+
   $scope.setOrderProperty = function(propertyName) {
     if ($scope.orderProperty === propertyName) {
         $scope.orderProperty = '-' + propertyName;
@@ -16,7 +17,8 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 	var placesRef = firebase.database().ref('places').child('data');
 	$scope.places = $firebaseArray(placesRef);
 	$scope.placesComment = $firebaseArray(commentsRef);
-	$scope.loadcomment = function(){
+	$scope.setOrderProperty('date.time');
+  $scope.loadcomment = function(){
 		$scope.comments = [];
 		$scope.placesComment.$loaded().then(function(){
 /*		console.log($scope.placesComment);
@@ -37,7 +39,9 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 	});
 	};
 	$scope.loadcomment();
-	$scope.prepareItem = function(item){
+  
+
+  $scope.prepareItem = function(item){
   		$scope.edititem = angular.copy(item);
     	$scope.editplace  = angular.copy($scope.edititem.place);
     	$scope.editid = angular.copy($scope.edititem.$id);
@@ -45,6 +49,7 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
     	delete $scope.edititem.$id;
     	$scope.record = $scope.placesComment.$getRecord($scope.editplace.$id);
   				};
+
 	$scope.deleteComment = function(item,ev){
 		var confirm = $mdDialog.confirm()
           .title('¿Deseas eliminar el comentario?')
@@ -57,6 +62,7 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
     	//vamos a eliminar
       item.remove=true;
     	$scope.prepareItem(item);
+      $scope.placesComment.$save($scope.record);
     	delete $scope.record[$scope.editid];
       console.log('guardamos:', $scope.record);
     	$scope.placesComment.$save($scope.record);

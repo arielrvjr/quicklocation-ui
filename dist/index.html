@@ -80,7 +80,7 @@ md-list-item._md-button-wrap>div.md-button:first-child {
 }
   </style>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
 
 
@@ -90,7 +90,7 @@ md-list-item._md-button-wrap>div.md-button:first-child {
 
 
   <div layout="column">
-    <md-toolbar class="md-menu-toolbar"  layout-align="center center" md-colors="{color: 'primary-700'}"  >
+    <md-toolbar flex="10" class="md-menu-toolbar"  layout-align="center center" md-colors="{color: 'primary-700'}"  >
     <div class="md-toolbar-tools">
     <div hide-gt-sm>
       <md-button class="md-icon-button" aria-label="Settings"
@@ -122,7 +122,7 @@ md-list-item._md-button-wrap>div.md-button:first-child {
 
     </div>
   </md-toolbar>
-  <div layout="row" flex="grow" >
+  <div layout-sm="column" layout-gt-sm="row" flex="grow" >
      <md-sidenav 
         md-colors="{background: 'grey-200'}"
         class="md-sidenav-left" md-component-id="left"
@@ -134,10 +134,10 @@ md-list-item._md-button-wrap>div.md-button:first-child {
           <p > <strong>{{ setting.name }} </strong></p>
         </md-list-item>
                <md-divider></md-divider>
-      <md-subheader class="md-no-sticky"  md-colors="{background: 'grey-200'}">
+      <md-subheader ng-if="currentUser()" class="md-no-sticky"  md-colors="{background: 'grey-200'}">
               Reportes 
       </md-subheader>
-      <md-list-item  ng-repeat="reportes in reportes" ng-click="navigateTo(reportes.url)">
+      <md-list-item ng-if="currentUser()" ng-repeat="reportes in reportes" ng-click="navigateTo(reportes.url)">
           <md-icon md-colors="{color: 'accent'}">insert_drive_file</md-icon>
           <p > <strong>{{ reportes.name }} </strong></p>
         </md-list-item>
@@ -154,7 +154,7 @@ md-list-item._md-button-wrap>div.md-button:first-child {
     </md-content>
 
     </md-sidenav>
-<ng-view flex="grow"></ng-view> 
+    <ng-view flex="grow"></ng-view> 
 
   </div>
   </div>

@@ -45,5 +45,8 @@ module.exports =/* @ngInject */ function($routeProvider,$mdThemingProvider,$mdDa
         templateUrl : 'views/comment.html',
         controller : 'CommentCtrl'
     })
-    ;
+    .when('/main', {
+        templateUrl : 'views/main.html'
+    });
+    
 };
