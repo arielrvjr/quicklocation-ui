@@ -13,12 +13,12 @@
     <md-card-content flex-md="50"  layout="column">
         <md-input-container>
           <label>Usuario</label>
-          <input ng-model="user.email" type="email" required>
+          <input ng-model="user.email" md-maxlength="24" type="email" required>
         </md-input-container>
 
         <md-input-container >
           <label>Contraseña</label>
-          <input ng-model="user.password"  type="password" required >
+          <input ng-model="user.password" md-maxlength="16" type="password" required >
         </md-input-container>
 
           <md-button class="md-raised md-accent" ng-click="register()">Registrarse</md-button>
