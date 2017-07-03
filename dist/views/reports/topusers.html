@@ -6,17 +6,18 @@
       </div>
   </md-toolbar>
   <form name="searchForm" flex="10"  md-whiteframe="1"  layout="row" layout-align="start center" md-colors="{background: 'grey-A100'}">
-      <!-- <md-input-container>
-        <label>Desde</label> -->
-        <md-datepicker ng-model="desde" name="desde" ></md-datepicker>
+<!--       <md-input-container>
+                <label>Fecha Inicial</label> -->
+
+        <md-datepicker ng-model="desde" name="desde"  md-placeholder="Fecha Inicial" ></md-datepicker>
         <!-- <div ng-messages="searchForm.desde.$error">
           <div ng-message="valid">El valor ingresado no es una fecha!</div>
           <div ng-message="required">Esta fecha es requerida!</div>
         </div>
       </md-input-container>
       <md-input-container>
-        <label>Hasta</label> -->
-        <md-datepicker ng-model="hasta" name="hasta" ></md-datepicker>
+        <label>Fecha Final</label> -->
+        <md-datepicker ng-model="hasta" name="hasta" md-placeholder="Fecha Final" ></md-datepicker>
         <!-- <div ng-messages="searchForm.hasta.$error">
           <div ng-message="valid">El valor ingresado no es una fecha!</div>
           <div ng-message="required">Esta fecha es requerida!</div>

@@ -3,8 +3,6 @@ var moment = require('moment');
 var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 	var reportsRef = firebase.database().ref("places").child("reports").child("top10User");
 	$scope.user =$rootScope.currentUser();
-	/*	$scope.top10lastReview.$save();*/
-
 
 	$scope.mostActiveUsers = {
 		options: {
@@ -21,47 +19,44 @@ var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 		title: {
 			text: 'Usuarios más activos'
 		},
-		 tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-    },
+		tooltip: {
+			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+		},
 		plotOptions: {
-                pie: {
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.name}: {point.y:.1f}%'
+			pie: {
+				dataLabels: {
+					enabled: true,
+					format: '{point.name}: {point.y:.1f}%'
 
-                    },
-                    showInLegend: true
-                }
-            },
+				},
+				showInLegend: true
+			}
+		},
 		loading: true
 	};
 
-  						$scope.buscando = false;
+	$scope.buscando = false;
 
 	$scope.buscar = function(){
-		  						$scope.buscando = true;
+		$scope.buscando = true;
 
-				if (typeof $scope.desde === 'undefined'){
+		if (typeof $scope.desde === 'undefined'){
 			$scope.desde = new Date();
 		}
 		if (typeof $scope.hasta === 'undefined'){
 			$scope.hasta = new Date();
 		}
-		console.log(
-			moment($scope.desde), 
-			moment($scope.hasta),
-			moment($scope.desde).diff(moment($scope.hasta)));
+
 		if ((moment($scope.desde).diff(moment($scope.hasta)))>=0){
 			$mdToast.show(
-            $mdToast.simple()
-              .textContent("Fecha desde debe ser inferior a Fecha hasta.")
-              .toastClass('md-warn')
-              .position('bottom right')
-              .hideDelay(3000)
-          );
-			  						$scope.buscando = false;
+				$mdToast.simple()
+				.textContent("Fecha desde debe ser inferior a Fecha hasta.")
+				.toastClass('md-warn')
+				.position('bottom right')
+				.hideDelay(3000)
+				);
+			$scope.buscando = false;
 
 			return;
 		}
@@ -78,9 +73,9 @@ var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 			if (event.event == "child_added" && event.key== "response"){
 				$scope.topuser = $scope.topusers.$getRecord("response");
 				angular.forEach($scope.topuser, function(r){
-					$scope.mostActiveUsers.series[0].data.push({y:Number(r.count), name: r.name});
+					$scope.mostActiveUsers.series[0].data.push({y:Number(r.porcent), name: r.name});
 				});
-				  						$scope.buscando = false;
+				$scope.buscando = false;
 
 			}
 		});
