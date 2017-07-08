@@ -11,7 +11,6 @@ var mainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,$
   });
   
 
-
   function buildToggler(componentId) {
       return function() {
       	$log.debug("toggle:", componentId);
