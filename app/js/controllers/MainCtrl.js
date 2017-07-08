@@ -47,7 +47,7 @@ var mainCtrl = function($log,$location, $rootScope,$window,$mdMedia,$mdSidenav,$
        $rootScope.reportes = [
     { url:'/reports/lastcomments', name: 'Últimos comentarios'},
     { url:'/reports/topusers', name: 'Usuarios más activos'},
-
+{url:'/reports/statisticsperhour', name: 'Estadistica por Hora'},
     ];
 };
 

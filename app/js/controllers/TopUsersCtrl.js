@@ -65,19 +65,21 @@ var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 		//$scope.info = $firebaseObject($scope.reportsRef.child($scope.user.uid));
 		$scope.info={};
 
-		$scope.info.request = {desde: moment($scope.desde).format('YYYY-MM-DD'), hasta: moment($scope.hasta).format('YYYY-MM-DD'), flag: true};
+		$scope.info.request = {desde: moment($scope.desde).format("x"), hasta: moment($scope.hasta).format("x"), flag: true};
 		reportsRef.child($scope.user.uid).set($scope.info);
 		$scope.topusers = $firebaseArray(reportsRef.child($scope.user.uid));
 		
 		$scope.topusers.$watch(function(event) {
 			if (event.event == "child_added" && event.key== "response"){
 				$scope.topuser = $scope.topusers.$getRecord("response");
+				console.log(event);
 				angular.forEach($scope.topuser, function(r){
 					$scope.mostActiveUsers.series[0].data.push({y:Number(r.porcent), name: r.name});
 				});
-				$scope.buscando = false;
 
 			}
+			$scope.buscando = false;
+
 		});
 
 	};

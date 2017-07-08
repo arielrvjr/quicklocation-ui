@@ -33,7 +33,7 @@ $scope.user =$rootScope.currentUser();
 			return;
 		}
 		$scope.info={};
-		$scope.info.request = {desde: moment($scope.desde).format('YYYY-MM-DD'), hasta: moment($scope.hasta).format('YYYY-MM-DD'), flag:true};
+		$scope.info.request = {desde: moment($scope.desde).format("x"), hasta: moment($scope.hasta).format("x"), flag: true};
 		console.log($scope.user.uid,$scope.info);
 		reportsRef.child($scope.user.uid).set($scope.info);
 		$scope.top10lastReviewParent = $firebaseArray(reportsRef.child($scope.user.uid));

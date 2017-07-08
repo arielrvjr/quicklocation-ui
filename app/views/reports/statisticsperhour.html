@@ -1,0 +1,31 @@
+<md-content layout="row" layout-xs="column" layout-sm="column" layout-fill md-colors="{color: 'primary'}" md-colors="{background: 'grey-A100'}" layout-wrap>
+  <div flex="100" flex-sm="100" flex-xs="100" layout="column">
+  <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <span>Estadistica por Hora</span>
+      </div>
+  </md-toolbar>
+  <form name="searchForm" flex="10"  md-whiteframe="1"  layout="row" layout-align="start center" md-colors="{background: 'grey-A100'}">
+
+
+        <md-datepicker ng-model="desde" name="desde"  md-placeholder="Dia" ></md-datepicker>
+
+      <md-button class="md-raised md-accent" ng-disabled="buscando" ng-click="buscar()">Buscar</md-button>
+  </form>
+
+        <md-progress-circular ng-show="buscando" md-mode="indeterminate"></md-progress-circular>
+
+       <md-list ng-hide="buscando" flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" layout="row" layout-align="center center">
+      <md-list-item flex ng-if="statisticsPerHour.series.length > 0" layout="row" layout-align="center center" >
+      <div flex class="md-list-item-text"  >
+        <highchart id="statisticsPerHour" config="statisticsPerHour"  ></highchart>
+      </div>
+        </md-list-item>
+         <md-list-item  flex ng-if="statisticsPerHour.series.length == 0" class="md-3-line" layout="row">
+        <div class="md-list-item-text" layout="row">
+         <div flex="100" layout-align="center center">
+          No existen datos para la consulta realizada.
+        </div>
+       </md-list>
+</div>
+</md-content>

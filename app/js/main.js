@@ -32,11 +32,15 @@ var CommentCtrl =   require('./controllers/CommentCtrl');
 //reports
 var LastCommentsCtrl =   require('./controllers/LastCommentsCtrl');
 var TopUsersCtrl =   require('./controllers/TopUsersCtrl');
+var StatisticsPerHourCtrl =   require('./controllers/StatisticsPerHourCtrl');
+
 
 app.controller('MainCtrl', ['$log','$location', '$rootScope','$window','$mdMedia','$mdSidenav','$firebaseArray','LoginService', MainCtrl]);
 app.controller('DashboardCtrl', ['$log', '$scope','$firebaseArray', DashboardCtrl]);
 app.controller('LastCommentsCtrl', ['$log', '$scope','$rootScope','$firebaseArray','$firebaseObject', '$mdToast', LastCommentsCtrl]);
 app.controller('TopUsersCtrl', ['$log', '$scope','$rootScope','$mdToast','$firebaseArray', TopUsersCtrl]);
+app.controller('StatisticsPerHourCtrl', ['$log', '$scope','$rootScope','$mdToast','$firebaseArray', StatisticsPerHourCtrl]);
+
 
 app.controller('LoginCtrl', ['$log', '$scope','LoginService', LoginCtrl]);
 app.controller('PlaceCtrl', ['$log', '$scope','$location','$routeParams','$firebaseArray','$firebaseObject','$mdDialog','$mdToast', PlaceCtrl]);

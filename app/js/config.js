@@ -20,6 +20,11 @@ module.exports =/* @ngInject */ function($routeProvider,$mdThemingProvider,$mdDa
         controller : 'LastCommentsCtrl'
 
     })
+    .when('/reports/statisticsperhour', {
+        templateUrl : 'views/reports/statisticsperhour.html',
+        controller : 'StatisticsPerHourCtrl'
+
+    })
     .when('/reports/topusers', {
         templateUrl : 'views/reports/topusers.html',
         controller : 'TopUsersCtrl'
