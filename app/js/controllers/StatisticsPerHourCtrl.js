@@ -17,7 +17,7 @@ var StatisticsPerHourCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebase
 },],
 		tooltip: {
 			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> consultas<br/>'
+			pointFormat: '<b>{point.y}</b> consultas<br/>'
 		},
 		 plotOptions: {
         series: {
