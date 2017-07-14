@@ -17,7 +17,7 @@ var commentCtrl = function($log, $scope,$mdDialog,$firebaseArray,$mdToast) {
 	var placesRef = firebase.database().ref('places').child('data');
 	$scope.places = $firebaseArray(placesRef);
 	$scope.placesComment = $firebaseArray(commentsRef);
-	$scope.setOrderProperty('date.time');
+	$scope.setOrderProperty('-date');
   $scope.loadcomment = function(){
 		$scope.comments = [];
 		$scope.placesComment.$loaded().then(function(){

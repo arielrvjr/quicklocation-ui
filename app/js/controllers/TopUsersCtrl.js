@@ -43,7 +43,6 @@ var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 
 	$scope.buscar = function(){
 		$scope.buscando = true;
-
 		if (typeof $scope.desde === 'undefined'){
 			$scope.desde = new Date();
 		}
@@ -51,18 +50,6 @@ var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 			$scope.hasta = new Date();
 		}
 
-		/*if ((moment($scope.desde).diff(moment($scope.hasta)))>=0){
-			$mdToast.show(
-				$mdToast.simple()
-				.textContent("Fecha desde debe ser inferior a Fecha hasta.")
-				.toastClass('md-warn')
-				.position('bottom right')
-				.hideDelay(3000)
-				);
-			$scope.buscando = false;
-
-			return;
-		}*/
 		$scope.mostActiveUsers.series[0].data =[];
 		//uid
 		$scope.response = {};
@@ -74,12 +61,12 @@ var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 		$scope.reviews.$loaded().then(function(places) {
 
 			$scope.updates.$loaded().then(function(updates){
-				console.log(places,updates);
-				angular.forEach(updates,function(update){
+/*				console.log(places,updates);
+*/				angular.forEach(updates,function(update){
 					angular.forEach(update,function(u){
 						if (typeof u === 'object' && u !== null){
-						console.log("update:",u);
-
+/*						console.log("update:",u);
+*/
 						if ((moment($scope.request.desde).diff(moment(u.date)))<0 
 							&& (moment(u.date).diff(moment($scope.request.hasta)))<0 ){
 
@@ -96,8 +83,8 @@ var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 				angular.forEach(places, function(p){
 					angular.forEach(p,function(r){
 						if (typeof r === 'object' && r !== null){
-						console.log("review:",r);
-
+/*						console.log("review:",r);
+*/
 						if ((moment($scope.request.desde).diff(moment(r.date)))<0 
 							&& (moment(r.date).diff(moment($scope.request.hasta)))<0 ){
 							if ( typeof $scope.response[r.authorName] == 'undefined'){
@@ -111,19 +98,19 @@ var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 				});
 
 				var salida = {otros: {name:'otros',count:0, porcent:0}};
-				console.log('Recorremos $scope.response:',$scope.response);
-				_.map($scope.response,function(d){
-					console.log('Response Map:',d);
+/*				console.log('Recorremos $scope.response:',$scope.response);
+*/				_.map($scope.response,function(d){
+					//console.log('Response Map:',d);
 					if (typeof d === 'object' && d !== null){
 						d.porcent = d.count / total * 100;
 					if (d.porcent < 5){
-						console.log('Es menor a 5%', d);
-						salida.otros.count += d.count;
+/*						console.log('Es menor a 5%', d);
+*/						salida.otros.count += d.count;
 						salida.otros.porcent += d.porcent;
 					}
 					else {
-						console.log('Es mayor a 5%',d);
-						salida[d.name] = d;
+/*						console.log('Es mayor a 5%',d);
+*/						salida[d.name] = d;
 					}
 					}
 					
@@ -140,6 +127,7 @@ var TopUsersCtrl= function($log,$scope,$rootScope, $mdToast  ,$firebaseArray) {
 		});
 
 	};
+	$scope.buscar();
 };
 
 

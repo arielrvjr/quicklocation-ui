@@ -2,47 +2,27 @@
   <div flex="100" flex-sm="100" flex-xs="100" layout="column">
   <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <span>Usuarios más Activos</span>
+        <span>Usuarios más activos </span>
       </div>
   </md-toolbar>
   <form name="searchForm" flex="10"  md-whiteframe="1"  layout="row" layout-align="start center" md-colors="{background: 'grey-A100'}">
-<!--       <md-input-container>
-                <label>Fecha Inicial</label> -->
-
         <md-datepicker ng-model="desde" name="desde"  md-placeholder="Fecha Inicial" ></md-datepicker>
-        <!-- <div ng-messages="searchForm.desde.$error">
-          <div ng-message="valid">El valor ingresado no es una fecha!</div>
-          <div ng-message="required">Esta fecha es requerida!</div>
-        </div>
-      </md-input-container>
-      <md-input-container>
-        <label>Fecha Final</label> -->
         <md-datepicker ng-model="hasta" name="hasta" md-placeholder="Fecha Final" ></md-datepicker>
-        <!-- <div ng-messages="searchForm.hasta.$error">
-          <div ng-message="valid">El valor ingresado no es una fecha!</div>
-          <div ng-message="required">Esta fecha es requerida!</div>
-        </div>
-      </md-input-container> -->
       <md-button flex="10" class="md-raised md-accent" ng-disabled="buscando" ng-click="buscar()">Buscar</md-button>
   </form>
-        <md-progress-circular ng-show="buscando" md-mode="indeterminate"></md-progress-circular>
+        <div flex="100"  ng-show="buscando" layout-align="center center">
+          <md-progress-circular  md-mode="indeterminate"></md-progress-circular>
+        </div>
 
        <md-list ng-hide="buscando" flex md-whiteframe="1" md-colors="{background: 'grey-A100'}" layout="row" layout-align="center center">
-<!--        <md-subheader class="md-no-sticky" ng-if="topuser.length > 0 && !(topuser.length == 1 && topuser[0].count==0)" >
-       <div layout="row" ng-if="!(topuser.length == 1 && topuser[0].count==0)">
-          <span flex="10"><strong>Cantidad</strong></span>        
-          <span flex="20" ><strong md-colors="{color: 'primary'}">Usuario</strong> </span>
-          <span><strong md-colors="{color: 'accent'}">Cantidad de aportaciones</strong></span>
-        </div>
-         
-       </md-subheader> -->
-      <md-list-item flex ng-if="!(topuser.length == 1 && topuser['otros'].count==0)" layout="row" layout-align="center center" >
+
+      <md-list-item flex ng-if="(mostActiveUsers.series[0].data.length>1) || (mostActiveUsers.series[0].data.length==1 && mostActiveUsers.series[0].data['otros'] > 0)" layout="row" layout-align="center center" >
       <div flex class="md-list-item-text"  >
         <highchart id="mostActiveUsers" config="mostActiveUsers"  ng-if="mostActiveUsers.series[0].data.length > 0" ></highchart>
       </div>
             
         </md-list-item>
-         <md-list-item  flex ng-if="topuser.length == 1 && topuser['otros'].count==0" class="md-3-line" layout="row">
+         <md-list-item  flex ng-if="!((mostActiveUsers.series[0].data.length>1) || (mostActiveUsers.series[0].data.length==1 && mostActiveUsers.series[0].data['otros'] > 0))" class="md-3-line" layout="row">
         <div class="md-list-item-text" layout="row">
          <div flex="100" layout-align="center center">
           No existen datos para la consulta realizada.
